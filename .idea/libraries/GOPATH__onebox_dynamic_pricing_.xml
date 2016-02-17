@@ -20,6 +20,7 @@
       <root url="file://$PROJECT_DIR$/../../../code.google.com/p/go.tools/go/types/testdata" />
       <root url="file://$PROJECT_DIR$/../../../code.google.com/p/go.tools/cmd/vet/testdata" />
       <root url="file://$PROJECT_DIR$/../../araddon/gou/.git" />
+      <root url="file://$PROJECT_DIR$/../../../gopkg.in/yaml.v2/.git" />
       <root url="file://$PROJECT_DIR$/../../../golang.org/x/tools/refactor/eg/testdata" />
       <root url="file://$PROJECT_DIR$/../../../golang.org/x/tools/cmd/cover/testdata" />
       <root url="file://$PROJECT_DIR$/../../../golang.org/x/tools/.git" />
@@ -45,6 +46,7 @@
       <root url="file://$PROJECT_DIR$/../mockapi/.git" />
       <root url="file://$PROJECT_DIR$/../elastic-go-test/.idea" />
       <root url="file://$PROJECT_DIR$/../../../code.google.com/p/go.net/html/testdata" />
+      <root url="file://$PROJECT_DIR$/../../go-sql-driver/mysql/.git" />
       <root url="file://$PROJECT_DIR$/../rabbit-go-test/.git" />
       <root url="file://$PROJECT_DIR$/../../../code.google.com/p/go.tools/go/pointer/testdata" />
       <root url="file://$PROJECT_DIR$/../couchdb-go-test/.git" />
