@@ -27,6 +27,26 @@ type Pricetype struct{
 	External_price_id []byte `json:"external_price_id"`
 }
 
+// Global vars
+var db *sql.DB
+var isInitialized bool = false
+
+
+// Initialize pool database and set properties from config
+func Initialize( config configuration.Config ){
+
+	if !isInitialized {
+
+		// Open database connection pool
+		db, _ = sql.Open("mysql", config.Mysql_conn)
+		db.SetMaxOpenConns(config.Mysql_max_conn)
+		db, _ = sql.Open("mysql", config.Mysql_conn)
+
+		isInitialized = true
+
+		log.Printf("--> db prices initialized with a max pool of: %v", config.Mysql_max_conn)
+	}
+}
 
 
 /**
@@ -39,21 +59,14 @@ func GetPrices(date_from string, date_to string, limit int, config configuration
 
 	var prices []*Pricetype
 
-	db, err := sql.Open("mysql", config.Mysql_conn)
-
-	if err != nil {
-		log.Fatal(err)
-	} else {
-		log.Println("db connection successful.")
-	}
-
+	// Query
 	rows, err := db.Query(config.Prices_sql, date_from, date_to, limit);
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer rows.Close()
 
-	// Read all values from resultset and map it to vector of Pricetype
+	// Read all values from resultset and map it to vector of Pricetype struct
 	for rows.Next() {
 
 		p := new(Pricetype)
@@ -62,21 +75,17 @@ func GetPrices(date_from string, date_to string, limit int, config configuration
 			log.Fatal(err)
 		}
 		prices = append(prices, p)
-		// Log to test the results
-		//log.Println(id, price_zone_id, price, price_zone_name, event_id, event_name, event_date, session_id, session_date, venue_id, venue_name, buyer_type_code, fee, tax, external_price_id)
-		//log.Printf("row: %v", p)
 	}
-	//log.Printf("row: %v", prices)
 	err = rows.Err()
 	if err != nil {
 		log.Fatal(err)
 	} else {
-		log.Printf("--> mysql-service: %v price rows retrieved.\n", len(prices))
+		log.Printf("--> prices-service: %v price rows retrieved.\n", len(prices))
 	}
 
-	defer db.Close()
+	// Reuse db connections pool rather than Close database connection
+	// defer db.Close()
 
 	return prices
-
 }
 

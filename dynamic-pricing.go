@@ -34,6 +34,7 @@ func main() {
 	// Load configuration to start application
 	var filename = os.Args[1] + "/" + os.Args[2] + ".yml"
 	config = configuration.LoadConfiguration(filename)
+	dataservice.Initialize(config)
 	log.Printf("--> dynamic-pricing started with environment: %s\n", os.Args[2])
 
 	// Create the router to handle mockup requests with its response properly
@@ -52,6 +53,7 @@ func main() {
  */
 func pricesController(w http.ResponseWriter, r *http.Request) {
 
+	log.Printf( "/prices request received." )
 	ms := time.Now().UnixNano()%1e6/1e3
 
 	// Retrieve requested resource information
@@ -68,8 +70,8 @@ func pricesController(w http.ResponseWriter, r *http.Request) {
 	// Response string
 	fmt.Fprintln(w, string(pricesjson))
 
-	ms = ms - (time.Now().UnixNano()%1e6/1e3)
-	log.Printf( "prices response in %v ms.", ms )
+	ms = (time.Now().UnixNano()%1e6/1e3) - ms
+	log.Printf( "/prices response in %v ms.", ms )
 
 }
 

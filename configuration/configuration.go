@@ -12,6 +12,7 @@ type Config struct {
 	Server_port string
 	Prices_sql string
 	Mysql_conn   string
+	Mysql_max_conn int
 }
 
 
