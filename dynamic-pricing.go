@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+
 	"log"
 	"net/http"
 	"os"
@@ -11,6 +11,7 @@ import (
 	"github.com/joliva-ob/onebox-dynamic-pricing/dataservice"
 	"github.com/joliva-ob/onebox-dynamic-pricing/configuration"
 	"github.com/gorilla/mux"
+	"github.com/joliva-ob/onebox-dynamic-pricing/authorization"
 )
 
 
@@ -51,27 +52,36 @@ func main() {
 /**
  * Prices resource endpoint
  */
-func pricesController(w http.ResponseWriter, r *http.Request) {
+func pricesController(w http.ResponseWriter, request *http.Request) {
 
 	log.Printf( "/prices request received." )
 	ms := time.Now().UnixNano()%1e6/1e3
+
+	// Check authorization
+	if !authorization.Authorize( request.Header.Get("Authorization") ) {
+		w.WriteHeader(http.StatusUnauthorized)
+		log.Println("/prices status 401 error unauthorized.")
+		return
+	}
 
 	// Retrieve requested resource information
 	prices := dataservice.GetPrices(date_from, date_to, limit, config)
 	pricesjson, err := json.Marshal(prices)
 	if err != nil {
-		fmt.Println(err)
+		w.WriteHeader(http.StatusNoContent)
+		log.Println(err)
+		log.Println("/prices status 204 error no content.")
 		return
 	}
 
 	// Set response headers
 	w.Header().Set("Content-Type", "application/json")
 
-	// Response string
-	fmt.Fprintln(w, string(pricesjson))
+	// Set response body
+	w.Write(pricesjson)
 
 	ms = (time.Now().UnixNano()%1e6/1e3) - ms
-	log.Printf( "/prices response in %v ms.", ms )
+	log.Printf( "/prices status 200 response in %v ms.", ms )
 
 }
 
