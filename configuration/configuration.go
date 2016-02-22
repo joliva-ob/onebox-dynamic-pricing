@@ -5,7 +5,14 @@ import (
 	"log"
 
 	"gopkg.in/yaml.v2"
+	"os"
 )
+
+
+// Global vars
+var logfile os.File
+var config Config
+
 
 // Instance configuration
 type Config struct {
@@ -13,6 +20,8 @@ type Config struct {
 	Prices_sql string
 	Mysql_conn   string
 	Mysql_max_conn int
+	Log_file string
+	Log_file_enabled bool
 }
 
 
@@ -21,8 +30,7 @@ type Config struct {
  */
 func LoadConfiguration(filename string) Config {
 
-	var config Config
-
+	// Set config
 	source, err := ioutil.ReadFile(filename)
 	if err != nil {
 		panic(err)
@@ -33,6 +41,17 @@ func LoadConfiguration(filename string) Config {
 		panic(err)
 	}
 	log.Printf("--> Configuration loaded values: %#v\n", config)
+
+	// Set logger
+	if config.Log_file_enabled {
+
+			f, err := os.OpenFile(config.Log_file, os.O_RDWR | os.O_CREATE | os.O_APPEND, 0666)
+		if err != nil {
+			defer f.Close()
+			log.Printf("error opening file: %v", err)
+		}
+		log.SetOutput(f)
+	}
 
 	return config
 }

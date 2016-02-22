@@ -5,11 +5,11 @@ Find specifications at:
 + [onebox-developer](http://developer.oneboxtickets.com/dynamic-pricing-api)
 
 ## TODO list
-+ Link oauth to the server oauth
-+ adapt json responses to API specifications
-+ API filters (dates between, page num. (page size with default limit = 100), default values (last 100 items as of now)
 + handle general errors
++ API filters (dates between, page num. (page size with default limit = 100), default values (last 100 items as of now)
++ adapt json responses to API specifications
 + catch mysql responses, coger informacion de DAL-mysql o de elasticsearch o MS de prices, TTL 1 min.
++ Link oauth to the server oauth
 
 ## DONE list
 + rehuse mysql sql.DB connections pool
@@ -17,3 +17,4 @@ Find specifications at:
 + connect to data store to retrieve prices information
 + marshall prices to json throw endpoint prices
 + OAUTH2 authentication reading bear header
++ redirect logs to a file

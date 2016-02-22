@@ -1,0 +1,5 @@
+2016/02/22 18:03:18 --> db prices initialized with a max pool of: 5
+2016/02/22 18:03:18 --> dynamic-pricing started with environment: dev
+2016/02/22 18:04:00 /prices request received.
+2016/02/22 18:04:01 --> prices-service: 10 price rows retrieved.
+2016/02/22 18:04:01 /prices status 200 response in 495 ms.
