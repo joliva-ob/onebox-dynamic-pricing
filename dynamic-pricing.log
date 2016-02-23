@@ -3,3 +3,19 @@
 2016/02/22 18:04:00 /prices request received.
 2016/02/22 18:04:01 --> prices-service: 10 price rows retrieved.
 2016/02/22 18:04:01 /prices status 200 response in 495 ms.
+11:17:55.090 main ▶ INFO 001[0m --> dynamic-pricing started with environment: dev
+11:18:04.527 pricesController ▶ INFO 002[0m /prices request received.
+11:18:05.509 pricesController ▶ INFO 003[0m /prices status 200 response in -225 ms.
+11:40:37.952 main ▶ INFO 001[0m --> dynamic-pricing started with environment: dev
+11:40:52.790 pricesController ▶ INFO 002[0m /prices request received.
+11:41:04.358 pricesController ▶ INFO 003[0m /prices status 200 response in -524 ms.
+12:55:42.384 main ▶ INFO 001[0m --> dynamic-pricing started with environment: dev
+12:57:03.587 main ▶ INFO 001[0m --> dynamic-pricing started with environment: dev and listening in port: 8000
+12:57:26.324 pricesController ▶ INFO 002[0m /prices request received.
+12:57:27.287 pricesController ▶ INFO 003[0m /prices status 200 response in 238 ms.
+[36m13:01:32.049 Initialize ▶ DEBU 001[0m --> db prices initialized with a max pool of: 5
+13:01:32.049 main ▶ INFO 002[0m --> dynamic-pricing started with environment: dev and listening in port: 8000
+13:01:49.874 pricesController ▶ INFO 003[0m /prices request received.
+[36m13:01:50.344 GetPrices ▶ DEBU 004[0m --> prices-service: %v price rows retrieved.
+ 10
+13:01:50.345 pricesController ▶ INFO 005[0m /prices status 200 response in -565 ms.

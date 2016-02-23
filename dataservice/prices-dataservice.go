@@ -1,10 +1,11 @@
 package dataservice
 
 import (
-	"log"
+
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/joliva-ob/onebox-dynamic-pricing/configuration"
+	"github.com/op/go-logging"
 )
 
 
@@ -30,12 +31,15 @@ type Pricetype struct{
 // Global vars
 var db *sql.DB
 var isInitialized bool = false
+var log *logging.Logger
 
 
 // Initialize pool database and set properties from config
 func Initialize( config configuration.Config ){
 
 	if !isInitialized {
+
+		log = configuration.GetLog()
 
 		// Open database connection pool
 		db, _ = sql.Open("mysql", config.Mysql_conn)
@@ -44,7 +48,7 @@ func Initialize( config configuration.Config ){
 
 		isInitialized = true
 
-		log.Printf("--> db prices initialized with a max pool of: %v", config.Mysql_max_conn)
+		log.Debugf("prices dataservice initialized with a max pool of: %v", config.Mysql_max_conn)
 	}
 }
 
@@ -80,7 +84,7 @@ func GetPrices(date_from string, date_to string, limit int, config configuration
 	if err != nil {
 		log.Fatal(err)
 	} else {
-		log.Printf("--> prices-service: %v price rows retrieved.\n", len(prices))
+		log.Debug("prices-dataservice: %v price rows retrieved.", len(prices))
 	}
 
 	// Reuse db connections pool rather than Close database connection

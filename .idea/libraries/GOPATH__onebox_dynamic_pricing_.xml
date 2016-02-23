@@ -47,6 +47,7 @@
       <root url="file://$PROJECT_DIR$/../elastic-go-test/.idea" />
       <root url="file://$PROJECT_DIR$/../../../code.google.com/p/go.net/html/testdata" />
       <root url="file://$PROJECT_DIR$/../../go-sql-driver/mysql/.git" />
+      <root url="file://$PROJECT_DIR$/../../op/go-logging/.git" />
       <root url="file://$PROJECT_DIR$/../rabbit-go-test/.git" />
       <root url="file://$PROJECT_DIR$/../../../code.google.com/p/go.tools/go/pointer/testdata" />
       <root url="file://$PROJECT_DIR$/../couchdb-go-test/.git" />

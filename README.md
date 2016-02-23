@@ -17,4 +17,5 @@ Find specifications at:
 + connect to data store to retrieve prices information
 + marshall prices to json throw endpoint prices
 + OAUTH2 authentication reading bear header
-+ redirect logs to a file
++ redirect logs to a file and standard output
++ added log levels
