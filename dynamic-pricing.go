@@ -59,7 +59,7 @@ func main() {
 func pricesController(w http.ResponseWriter, request *http.Request) {
 
 	log.Infof( "/prices request received." )
-	ms := time.Now().UnixNano()%1e6/1e3
+	start := time.Now()
 
 	// Check authorization
 	if !authorization.Authorize( request.Header.Get("Authorization") ) {
@@ -83,8 +83,8 @@ func pricesController(w http.ResponseWriter, request *http.Request) {
 	// Set response body
 	w.Write(pricesjson)
 
-	ms = (time.Now().UnixNano()%1e6/1e3) - ms
-	log.Infof( "/prices status 200 response in %v ms.", ms )
+	elapsed := time.Since(start)
+	log.Infof( "/prices status 200 response in %v", elapsed )
 
 }
 

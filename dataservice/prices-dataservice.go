@@ -6,6 +6,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/joliva-ob/onebox-dynamic-pricing/configuration"
 	"github.com/op/go-logging"
+	"time"
 )
 
 
@@ -64,6 +65,7 @@ func GetPrices(date_from string, date_to string, limit int, config configuration
 	var prices []*Pricetype
 
 	// Query
+	start := time.Now()
 	rows, err := db.Query(config.Prices_sql, date_from, date_to, limit);
 	if err != nil {
 		log.Fatal(err)
@@ -84,7 +86,8 @@ func GetPrices(date_from string, date_to string, limit int, config configuration
 	if err != nil {
 		log.Fatal(err)
 	} else {
-		log.Debug("prices-dataservice: %v price rows retrieved.", len(prices))
+		elapsed := time.Since(start)
+		log.Debugf("prices-dataservice: %v price rows retrieved in %v", len(prices), elapsed)
 	}
 
 	// Reuse db connections pool rather than Close database connection
