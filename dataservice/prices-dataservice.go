@@ -32,15 +32,13 @@ type Pricetype struct{
 // Global vars
 var db *sql.DB
 var isInitialized bool = false
-var log *logging.Logger
+var log *logging.Logger = configuration.GetLog()
 
 
 // Initialize pool database and set properties from config
 func Initialize( config configuration.Config ){
 
 	if !isInitialized {
-
-		log = configuration.GetLog()
 
 		// Open database connection pool
 		db, _ = sql.Open("mysql", config.Mysql_conn)
@@ -87,7 +85,7 @@ func GetPrices(date_from string, date_to string, limit int, config configuration
 		log.Fatal(err)
 	} else {
 		elapsed := time.Since(start)
-		log.Debugf("prices-dataservice: %v price rows retrieved in %v", len(prices), elapsed)
+		log.Debugf("%v price rows retrieved in %v", len(prices), elapsed)
 	}
 
 	// Reuse db connections pool rather than Close database connection

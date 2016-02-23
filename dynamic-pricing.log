@@ -33,3 +33,18 @@
 13:32:25.691 pricesController ▶ INFO 00c[0m /prices request received.
 [36m13:32:25.932 GetPrices ▶ DEBU 00d[0m prices-dataservice: %v price rows retrieved in %v ms 10 241.148511ms
 13:32:25.932 pricesController ▶ INFO 00e[0m /prices status 200 response in 241.44674ms ms.
+[36m14:04:51.447 Initialize ▶ DEBU 001[0m prices dataservice initialized with a max pool of: 5
+14:04:51.447 main ▶ INFO 002[0m dynamic-pricing started with environment: dev and listening in port: 8000
+[36m14:15:43.450 Initialize ▶ DEBU 001[0m prices dataservice initialized with a max pool of: 5
+14:15:43.451 main ▶ INFO 002[0m dynamic-pricing started with environment: dev and listening in port: 8000
+14:15:50.137 PricesController ▶ INFO 003[0m /prices request received.
+[36m14:15:54.139 GetPrices ▶ DEBU 004[0m prices-dataservice: 10 price rows retrieved in 4.001892266s
+14:15:54.139 PricesController ▶ INFO 005[0m /prices status 200 response in 4.002475544s
+[36m14:21:58.693 Initialize ▶ DEBU 001[0m prices dataservice initialized with a max pool of: 5
+14:21:58.695 main ▶ INFO 002[0m dynamic-pricing started with environment: dev and listening in port: 8000
+14:22:08.241 PricesController ▶ INFO 003[0m /prices request received.
+[36m14:22:09.116 GetPrices ▶ DEBU 004[0m 10 price rows retrieved in 874.747314ms
+14:22:09.117 PricesController ▶ INFO 005[0m /prices status 200 response in 875.165153ms
+14:22:09.763 PricesController ▶ INFO 006[0m /prices request received.
+[36m14:22:09.924 GetPrices ▶ DEBU 007[0m 10 price rows retrieved in 160.047466ms
+14:22:09.924 PricesController ▶ INFO 008[0m /prices status 200 response in 160.310219ms

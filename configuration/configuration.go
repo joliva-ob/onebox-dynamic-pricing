@@ -13,9 +13,6 @@ import (
 // Global vars
 var config Config
 var log = logging.MustGetLogger("dynamic-pricing")
-var format = logging.MustStringFormatter(
-	`%{color}%{time:15:04:05.000} %{shortfunc} ▶ %{level:.4s} %{id:03x}%{color:reset} %{message}`,
-)
 
 
 // Instance configuration
@@ -25,6 +22,7 @@ type Config struct {
 	Mysql_conn   string
 	Mysql_max_conn int
 	Log_file string
+	Log_format string
 }
 
 
@@ -46,6 +44,7 @@ func LoadConfiguration(filename string) Config {
 	fmt.Printf("--> Configuration loaded values: %#v\n", config)
 
 	// Set logger
+	format := logging.MustStringFormatter( config.Log_format )
 	logbackend1 := logging.NewLogBackend(os.Stdout, "", 0)
 	logbackend1Formatted := logging.NewBackendFormatter(logbackend1, format)
 	f, err := os.OpenFile(config.Log_file, os.O_RDWR | os.O_CREATE | os.O_APPEND, 0666)
@@ -63,5 +62,11 @@ func LoadConfiguration(filename string) Config {
 // Return the already configured logger
 func GetLog() *logging.Logger{
 	return log
+}
+
+
+// Return the already loaded configuration
+func GetConfig() Config{
+	return config
 }
 
