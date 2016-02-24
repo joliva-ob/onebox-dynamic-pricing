@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"encoding/json"
 	"time"
+	"strconv"
 
 	"github.com/op/go-logging"
 	"github.com/joliva-ob/onebox-dynamic-pricing/dataservice"
@@ -33,9 +34,9 @@ type ParametersResponseType struct {
 
 
 // Global vars and default values
-var startDate string = "2015-01-01"
-var endDate string = "2015-02-01"
-var page int = 1
+var startDate string
+var endDate string
+var page int = 0
 var log *logging.Logger = configuration.GetLog()
 
 
@@ -55,9 +56,22 @@ func PricesController(w http.ResponseWriter, request *http.Request) {
 		return
 	}
 
+	// GET request params
+	startDate = request.URL.Query().Get("start_date")
+	if startDate ==  "" {
+		startDate = time.Now().AddDate(0, -1, 0).Format("2006-01-02")
+	}
+	endDate = request.URL.Query().Get("end_date")
+	if endDate == "" {
+		endDate = time.Now().Format("2006-01-02")
+	}
+	page, err := strconv.Atoi(request.URL.Query().Get("page"))
+	if err != nil {
+		page = 0
+	}
 
 	// Retrieve requested resource information
-	prices := dataservice.GetPrices(startDate, endDate, configuration.GetConfig())
+	prices := dataservice.GetPrices(startDate, endDate, page, configuration.GetConfig())
 
 	// Set json response struct
 	var params ParametersResponseType

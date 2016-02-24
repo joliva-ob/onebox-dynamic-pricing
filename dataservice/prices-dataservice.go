@@ -60,13 +60,14 @@ func Initialize( config configuration.Config ){
  *
  * http://go-database-sql.org/accessing.html
  */
-func GetPrices(date_from string, date_to string, config configuration.Config) []*PriceType {
+func GetPrices(date_from string, date_to string, page int, config configuration.Config) []*PriceType {
 
 	var prices []*PriceType
 
 	// Query
 	start := time.Now()
-	rows, err := db.Query(config.Prices_sql, date_from, date_to, config.Mysql_limit_items);
+	offset := config.Mysql_limit_items * page
+	rows, err := db.Query(config.Prices_sql, date_from, date_to, config.Mysql_limit_items, offset);
 	if err != nil {
 		log.Fatal(err)
 	}
