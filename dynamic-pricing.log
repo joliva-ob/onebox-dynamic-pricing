@@ -48,3 +48,12 @@
 14:22:09.763 PricesController ▶ INFO 006[0m /prices request received.
 [36m14:22:09.924 GetPrices ▶ DEBU 007[0m 10 price rows retrieved in 160.047466ms
 14:22:09.924 PricesController ▶ INFO 008[0m /prices status 200 response in 160.310219ms
+[36m08:35:47.666 Initialize ▶ DEBU 001[0m prices dataservice initialized with a max pool of: 5
+08:35:47.669 main ▶ INFO 002[0m dynamic-pricing started with environment: dev and listening in port: 8000
+08:35:54.520 PricesController ▶ INFO 003[0m /prices request received.
+[35m08:36:00.547 GetPrices ▶ CRIT 004[0m dial tcp 10.1.108.161:3306: getsockopt: connection refused
+[36m08:36:17.139 Initialize ▶ DEBU 001[0m prices dataservice initialized with a max pool of: 5
+08:36:17.139 main ▶ INFO 002[0m dynamic-pricing started with environment: dev and listening in port: 8000
+08:37:13.165 PricesController ▶ INFO 003[0m /prices request received.
+[36m08:37:20.859 GetPrices ▶ DEBU 004[0m 10 price rows retrieved in 7.693775596s
+08:37:20.859 PricesController ▶ INFO 005[0m /prices status 200 response in 7.694483791s

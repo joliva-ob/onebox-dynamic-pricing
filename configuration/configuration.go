@@ -21,6 +21,7 @@ type Config struct {
 	Prices_sql string
 	Mysql_conn   string
 	Mysql_max_conn int
+	Mysql_limit_items int
 	Log_file string
 	Log_format string
 }

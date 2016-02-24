@@ -13,10 +13,29 @@ import (
 )
 
 
-// Global vars
-var date_from string = "2015-01-01"
-var date_to string = "2015-02-01"
-var limit int = 10
+// Prices response struct
+type PricesResponseType struct {
+
+	Version string `json:"version"`
+	RequestDate time.Time `json:"request_date"`
+	Parameters ParametersResponseType `json:"parameters"`
+	Prices []*dataservice.PriceType `json:"prices"`
+}
+
+// Parameters response struct
+type ParametersResponseType struct {
+
+	StartDate string `json:"start_date"`
+	EndDate string `json:"end_date"`
+	Page int `json:"page"`
+}
+
+
+
+// Global vars and default values
+var startDate string = "2015-01-01"
+var endDate string = "2015-02-01"
+var page int = 1
 var log *logging.Logger = configuration.GetLog()
 
 
@@ -36,9 +55,22 @@ func PricesController(w http.ResponseWriter, request *http.Request) {
 		return
 	}
 
+
 	// Retrieve requested resource information
-	prices := dataservice.GetPrices(date_from, date_to, limit, configuration.GetConfig())
-	pricesjson, err := json.Marshal(prices)
+	prices := dataservice.GetPrices(startDate, endDate, configuration.GetConfig())
+
+	// Set json response struct
+	var params ParametersResponseType
+	params.StartDate = startDate
+	params.EndDate = endDate
+	params.Page = page
+	var pricesresponse PricesResponseType
+	pricesresponse.Parameters = params
+	pricesresponse.RequestDate = time.Now()
+	pricesresponse.Version = "1.0"
+	pricesresponse.Prices = prices
+
+	pricesjson, err := json.Marshal(pricesresponse)
 	if err != nil {
 		w.WriteHeader(http.StatusNoContent)
 		log.Errorf("/prices status 204 error no content.")

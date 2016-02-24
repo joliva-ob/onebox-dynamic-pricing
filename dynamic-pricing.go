@@ -36,7 +36,7 @@ func main() {
 	dataservice.Initialize(config)
 	log.Infof("dynamic-pricing started with environment: %s and listening in port: %v\n", os.Args[2], config.Server_port)
 
-	// Create the router to handle mockup requests with its response properly
+	// Create the router to handle requests
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/prices", controller.PricesController) // General welcome endpoint
 

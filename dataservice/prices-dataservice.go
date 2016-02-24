@@ -10,8 +10,9 @@ import (
 )
 
 
-// Prices struct
-type Pricetype struct{
+// DB Price struct
+type PriceType struct{
+
 	Id int `json:"id"`
 	Price_zone_id int `json:"price_zone_id"`
 	Price float32 `json:"price"`
@@ -53,18 +54,19 @@ func Initialize( config configuration.Config ){
 
 
 /**
+ *
  * Public function to retrieve needed price details for handle with dynamic
  * pricing processes
  *
  * http://go-database-sql.org/accessing.html
  */
-func GetPrices(date_from string, date_to string, limit int, config configuration.Config) []*Pricetype {
+func GetPrices(date_from string, date_to string, config configuration.Config) []*PriceType {
 
-	var prices []*Pricetype
+	var prices []*PriceType
 
 	// Query
 	start := time.Now()
-	rows, err := db.Query(config.Prices_sql, date_from, date_to, limit);
+	rows, err := db.Query(config.Prices_sql, date_from, date_to, config.Mysql_limit_items);
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -73,7 +75,7 @@ func GetPrices(date_from string, date_to string, limit int, config configuration
 	// Read all values from resultset and map it to vector of Pricetype struct
 	for rows.Next() {
 
-		p := new(Pricetype)
+		p := new(PriceType)
 		err := rows.Scan(&p.Id, &p.Price_zone_id, &p.Price, &p.Price_zone_name, &p.Event_id, &p.Event_name, &p.Event_date, &p.Session_id, &p.Session_date, &p.Venue_id, &p.Venue_name, &p.Buyer_type_code, &p.Fee, &p.Tax, &p.External_price_id)
 		if err != nil {
 			log.Fatal(err)
