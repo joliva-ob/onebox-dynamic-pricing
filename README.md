@@ -5,8 +5,9 @@ Find specifications at:
 + [onebox-developer](http://developer.oneboxtickets.com/dynamic-pricing-api)
 
 ## TODO list
-+ organize constants values
 + cache sql pagination / optimize select
++ add endpoint /sales
++ add endpoint /summaries
 
 ## Optional TODO list
 + handle panic errors and recover

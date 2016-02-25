@@ -30,10 +30,21 @@ type PriceType struct{
 	External_price_id []byte `json:"external_price_id"`
 }
 
+
+const (
+	START_DATE = "start_date"
+	END_DATE = "end_date"
+	PAGE = "page"
+	DATE_FORMAT_SHORT = "2006-01-02"
+	MYSQL_DRIVER_NAME = "mysql"
+)
+
+
 // Global vars
 var db *sql.DB
 var isInitialized bool = false
 var log *logging.Logger = configuration.GetLog()
+
 
 
 // Initialize pool database and set properties from config
@@ -42,9 +53,9 @@ func Initialize( config configuration.Config ){
 	if !isInitialized {
 
 		// Open database connection pool
-		db, _ = sql.Open("mysql", config.Mysql_conn)
+		db, _ = sql.Open(MYSQL_DRIVER_NAME, config.Mysql_conn)
 		db.SetMaxOpenConns(config.Mysql_max_conn)
-		db, _ = sql.Open("mysql", config.Mysql_conn)
+		db, _ = sql.Open(MYSQL_DRIVER_NAME, config.Mysql_conn)
 
 		isInitialized = true
 
