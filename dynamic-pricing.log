@@ -151,3 +151,129 @@
 14:14:24.140 PricesController ▶ INFO 003[0m /prices request received.
 [36m14:14:30.738 GetPrices ▶ DEBU 004[0m 10 price rows retrieved in 6.598006192s
 14:14:30.738 PricesController ▶ INFO 005[0m /prices status 200 response in 6.598598598s
+[36m10:48:35.630 Initialize ▶ DEBU 001[0m prices dataservice initialized with a max pool of: 3
+10:48:35.632 main ▶ INFO 002[0m dynamic-pricing started with environment: dev and listening in port: 8000
+10:48:41.446 PricesController ▶ INFO 003[0m /prices request received.
+[36m10:49:07.292 GetPrices ▶ DEBU 004[0m 100 price rows retrieved in 25.845635906s
+10:49:07.293 PricesController ▶ INFO 005[0m /prices status 200 response in 25.847479073s
+[36m11:12:33.716 Initialize ▶ DEBU 001[0m prices dataservice initialized with a max pool of: 3
+11:12:33.716 main ▶ INFO 002[0m dynamic-pricing started with environment: dev and listening in port: 8000
+11:12:42.619 PricesController ▶ INFO 003[0m /prices request received.
+11:21:09.779 PricesController ▶ INFO 004[0m /prices request received.
+[36m11:21:50.897 Initialize ▶ DEBU 001[0m prices dataservice initialized with a max pool of: 3
+11:21:50.897 main ▶ INFO 002[0m dynamic-pricing started with environment: dev and listening in port: 8000
+11:21:54.488 PricesController ▶ INFO 003[0m /prices request received.
+[36m11:22:52.794 Initialize ▶ DEBU 001[0m prices dataservice initialized with a max pool of: 3
+11:22:52.794 main ▶ INFO 002[0m dynamic-pricing started with environment: dev and listening in port: 8000
+11:23:22.919 PricesController ▶ INFO 003[0m /prices request received.
+[36m11:24:20.535 Initialize ▶ DEBU 001[0m prices dataservice initialized with a max pool of: 3
+11:24:20.535 main ▶ INFO 002[0m dynamic-pricing started with environment: dev and listening in port: 8000
+11:24:31.823 PricesController ▶ INFO 003[0m /prices request received.
+[36m11:24:47.321 GetPrices ▶ DEBU 004[0m 100 price rows retrieved in 15.497577658s
+11:24:47.322 PricesController ▶ INFO 005[0m /prices status 200 response in 15.498535474s
+11:24:55.314 PricesController ▶ INFO 006[0m /prices request received.
+[36m11:25:28.746 GetPrices ▶ DEBU 007[0m 0 price rows retrieved in 33.431060095s
+11:25:28.746 PricesController ▶ INFO 008[0m /prices status 200 response in 33.431222473s
+11:25:45.506 PricesController ▶ INFO 009[0m /prices request received.
+[36m11:25:45.506 GetPrices ▶ DEBU 00a[0m 0 price rows retrieved in 4.487µs
+11:25:45.506 PricesController ▶ INFO 00b[0m /prices status 200 response in 103.434µs
+11:25:58.308 PricesController ▶ INFO 00c[0m /prices request received.
+[36m11:25:58.308 GetPrices ▶ DEBU 00d[0m 0 price rows retrieved in 4.431µs
+11:25:58.308 PricesController ▶ INFO 00e[0m /prices status 200 response in 86.541µs
+11:25:59.413 PricesController ▶ INFO 00f[0m /prices request received.
+[36m11:25:59.413 GetPrices ▶ DEBU 010[0m 0 price rows retrieved in 5.587µs
+11:25:59.414 PricesController ▶ INFO 011[0m /prices status 200 response in 117.148µs
+11:26:04.513 PricesController ▶ INFO 012[0m /prices request received.
+[36m11:26:04.513 GetPrices ▶ DEBU 013[0m 0 price rows retrieved in 4.897µs
+11:26:04.513 PricesController ▶ INFO 014[0m /prices status 200 response in 93.08µs
+11:26:53.024 PricesController ▶ INFO 015[0m /prices request received.
+[36m11:38:03.903 Initialize ▶ DEBU 001[0m prices dataservice initialized with a max pool of: 3
+11:38:03.905 main ▶ INFO 002[0m dynamic-pricing started with environment: dev and listening in port: 8000
+11:38:06.592 PricesController ▶ INFO 003[0m /prices request received.
+[36m11:38:09.649 GetPrices ▶ DEBU 004[0m 100 price rows retrieved in 3.056207243s
+11:38:34.369 PricesController ▶ INFO 005[0m /prices status 200 response in 27.776234579s
+11:38:50.770 PricesController ▶ INFO 006[0m /prices request received.
+11:39:38.565 PricesController ▶ INFO 007[0m /prices status 200 response in 47.795123915s
+11:39:50.465 PricesController ▶ INFO 008[0m /prices request received.
+11:39:57.572 PricesController ▶ INFO 009[0m /prices status 200 response in 7.107391121s
+11:39:59.287 PricesController ▶ INFO 00a[0m /prices request received.
+11:39:59.287 PricesController ▶ INFO 00b[0m /prices status 200 response in 637.881µs
+11:40:00.457 PricesController ▶ INFO 00c[0m /prices request received.
+11:40:00.458 PricesController ▶ INFO 00d[0m /prices status 200 response in 639.21µs
+11:40:01.290 PricesController ▶ INFO 00e[0m /prices request received.
+11:40:01.290 PricesController ▶ INFO 00f[0m /prices status 200 response in 524.217µs
+11:40:02.330 PricesController ▶ INFO 010[0m /prices request received.
+11:40:02.331 PricesController ▶ INFO 011[0m /prices status 200 response in 494.952µs
+11:40:03.346 PricesController ▶ INFO 012[0m /prices request received.
+11:40:03.347 PricesController ▶ INFO 013[0m /prices status 200 response in 1.06671ms
+11:40:05.761 PricesController ▶ INFO 014[0m /prices request received.
+11:40:05.762 PricesController ▶ INFO 015[0m /prices status 200 response in 733.101µs
+11:40:07.139 PricesController ▶ INFO 016[0m /prices request received.
+11:40:07.140 PricesController ▶ INFO 017[0m /prices status 200 response in 532.807µs
+11:40:13.457 PricesController ▶ INFO 018[0m /prices request received.
+[36m11:40:15.158 GetPrices ▶ DEBU 019[0m 100 price rows retrieved in 1.701405539s
+11:40:15.159 PricesController ▶ INFO 01a[0m /prices status 200 response in 1.702104218s
+11:40:20.344 PricesController ▶ INFO 01b[0m /prices request received.
+11:40:20.345 PricesController ▶ INFO 01c[0m /prices status 200 response in 693.009µs
+11:40:23.514 PricesController ▶ INFO 01d[0m /prices request received.
+11:40:23.515 PricesController ▶ INFO 01e[0m /prices status 200 response in 647.909µs
+[36m11:56:55.120 Initialize ▶ DEBU 001[0m prices dataservice initialized with a max pool of: 3
+11:56:55.120 main ▶ INFO 002[0m dynamic-pricing started with environment: dev and listening in port: 8000
+11:57:06.054 PricesController ▶ INFO 003[0m /prices request received.
+[36m11:57:08.639 GetPrices ▶ DEBU 004[0m 100 price rows retrieved in 2.584818162s
+11:57:08.640 PricesController ▶ INFO 005[0m /prices status 200 response in 2.585433307s
+11:57:14.878 PricesController ▶ INFO 006[0m /prices request received.
+11:57:14.879 PricesController ▶ INFO 007[0m /prices status 200 response in 671.498µs
+11:57:15.844 PricesController ▶ INFO 008[0m /prices request received.
+11:57:15.845 PricesController ▶ INFO 009[0m /prices status 200 response in 516.664µs
+11:59:11.660 PricesController ▶ INFO 00a[0m /prices request received.
+11:59:11.661 PricesController ▶ INFO 00b[0m /prices status 200 response in 559.556µs
+11:59:15.138 PricesController ▶ INFO 00c[0m /prices request received.
+11:59:15.138 PricesController ▶ INFO 00d[0m /prices status 200 response in 612.557µs
+12:02:07.813 PricesController ▶ INFO 00e[0m /prices request received.
+12:02:07.814 PricesController ▶ INFO 00f[0m /prices status 200 response in 1.00861ms
+[36m12:03:54.924 Initialize ▶ DEBU 001[0m prices dataservice initialized with a max pool of: 3
+12:03:54.924 main ▶ INFO 002[0m dynamic-pricing started with environment: dev and listening in port: 8000
+12:03:56.909 PricesController ▶ INFO 003[0m /prices request received.
+[36m12:03:59.575 GetPrices ▶ DEBU 004[0m 100 price rows retrieved in 2.666382591s
+12:03:59.576 PricesController ▶ INFO 005[0m /prices status 200 response in 2.667449891s
+12:04:00.752 PricesController ▶ INFO 006[0m /prices request received.
+[36m12:04:02.483 GetPrices ▶ DEBU 007[0m 100 price rows retrieved in 1.730352875s
+12:04:02.484 PricesController ▶ INFO 008[0m /prices status 200 response in 1.731535887s
+12:04:04.870 PricesController ▶ INFO 009[0m /prices request received.
+[36m12:04:06.708 GetPrices ▶ DEBU 00a[0m 100 price rows retrieved in 1.837904689s
+12:04:06.709 PricesController ▶ INFO 00b[0m /prices status 200 response in 1.838969583s
+12:04:14.132 PricesController ▶ INFO 00c[0m /prices request received.
+[36m12:04:16.079 GetPrices ▶ DEBU 00d[0m 100 price rows retrieved in 1.946331025s
+12:04:16.079 PricesController ▶ INFO 00e[0m /prices status 200 response in 1.946810052s
+[36m12:04:30.337 Initialize ▶ DEBU 001[0m prices dataservice initialized with a max pool of: 3
+12:04:30.337 main ▶ INFO 002[0m dynamic-pricing started with environment: dev and listening in port: 8000
+12:04:34.043 PricesController ▶ INFO 003[0m /prices request received.
+[36m12:04:36.719 GetPrices ▶ DEBU 004[0m 100 price rows retrieved in 2.675791248s
+12:04:36.720 PricesController ▶ INFO 005[0m /prices status 200 response in 2.676865257s
+12:04:37.865 PricesController ▶ INFO 006[0m /prices request received.
+12:04:37.865 PricesController ▶ INFO 007[0m /prices status 200 response in 519.102µs
+12:04:38.977 PricesController ▶ INFO 008[0m /prices request received.
+12:04:38.978 PricesController ▶ INFO 009[0m /prices status 200 response in 671.177µs
+12:06:59.344 PricesController ▶ INFO 00a[0m /prices request received.
+[36m12:07:01.289 GetPrices ▶ DEBU 00b[0m 100 price rows retrieved in 1.945179323s
+12:07:01.290 PricesController ▶ INFO 00c[0m /prices status 200 response in 1.946177044s
+12:07:02.836 PricesController ▶ INFO 00d[0m /prices request received.
+12:07:02.836 PricesController ▶ INFO 00e[0m /prices status 200 response in 545.47µs
+12:08:29.228 PricesController ▶ INFO 00f[0m /prices request received.
+[36m12:08:30.967 GetPrices ▶ DEBU 010[0m 100 price rows retrieved in 1.738657702s
+12:08:30.967 PricesController ▶ INFO 011[0m /prices status 200 response in 1.73913243s
+12:08:31.755 PricesController ▶ INFO 012[0m /prices request received.
+12:08:31.756 PricesController ▶ INFO 013[0m /prices status 200 response in 651.687µs
+12:08:32.672 PricesController ▶ INFO 014[0m /prices request received.
+12:08:32.672 PricesController ▶ INFO 015[0m /prices status 200 response in 573.803µs
+12:08:33.918 PricesController ▶ INFO 016[0m /prices request received.
+12:08:33.919 PricesController ▶ INFO 017[0m /prices status 200 response in 536.421µs
+12:08:34.709 PricesController ▶ INFO 018[0m /prices request received.
+12:08:34.709 PricesController ▶ INFO 019[0m /prices status 200 response in 819.442µs
+12:08:35.643 PricesController ▶ INFO 01a[0m /prices request received.
+12:08:35.644 PricesController ▶ INFO 01b[0m /prices status 200 response in 1.002005ms
+12:08:37.843 PricesController ▶ INFO 01c[0m /prices request received.
+12:08:37.844 PricesController ▶ INFO 01d[0m /prices status 200 response in 678.689µs
+12:08:39.849 PricesController ▶ INFO 01e[0m /prices request received.
+12:08:39.849 PricesController ▶ INFO 01f[0m /prices status 200 response in 684.542µs

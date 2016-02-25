@@ -3,10 +3,14 @@ package dataservice
 import (
 
 	"database/sql"
+	"time"
+	"strconv"
+
+	"github.com/patrickmn/go-cache"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/joliva-ob/onebox-dynamic-pricing/configuration"
 	"github.com/op/go-logging"
-	"time"
+
 )
 
 
@@ -44,6 +48,7 @@ const (
 var db *sql.DB
 var isInitialized bool = false
 var log *logging.Logger = configuration.GetLog()
+var pricesCache *cache.Cache
 
 
 
@@ -56,6 +61,9 @@ func Initialize( config configuration.Config ){
 		db, _ = sql.Open(MYSQL_DRIVER_NAME, config.Mysql_conn)
 		db.SetMaxOpenConns(config.Mysql_max_conn)
 		db, _ = sql.Open(MYSQL_DRIVER_NAME, config.Mysql_conn)
+		// Create a cache with a default expiration time of N seconds, and which
+		// purges expired items every 30 seconds
+		pricesCache = cache.New( time.Duration(config.Cache_expiration_time_sec*1000*1000*1000), 30*time.Second ) // Duration constructor needs nanoseconds
 
 		isInitialized = true
 
@@ -74,32 +82,48 @@ func Initialize( config configuration.Config ){
 func GetPrices(date_from string, date_to string, page int, config configuration.Config) []*PriceType {
 
 	var prices []*PriceType
-
-	// Query
 	start := time.Now()
 	offset := config.Mysql_limit_items * page
-	rows, err := db.Query(config.Prices_sql, date_from, date_to, config.Mysql_limit_items, offset);
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer rows.Close()
+	key := date_from + date_to + strconv.Itoa(config.Mysql_limit_items) + strconv.Itoa(offset)
+	var rows *sql.Rows
+	var err error
 
-	// Read all values from resultset and map it to vector of Pricetype struct
-	for rows.Next() {
+	// Get the string associated with the key from the cache
+	pricesFromCache, found := pricesCache.Get(key)
+	if !found {
 
-		p := new(PriceType)
-		err := rows.Scan(&p.Id, &p.Price_zone_id, &p.Price, &p.Price_zone_name, &p.Event_id, &p.Event_name, &p.Event_date, &p.Session_id, &p.Session_date, &p.Venue_id, &p.Venue_name, &p.Buyer_type_code, &p.Fee, &p.Tax, &p.External_price_id)
+		// Retrieve from DB
+		rows, err = db.Query(config.Prices_sql, date_from, date_to, config.Mysql_limit_items, offset);
 		if err != nil {
 			log.Fatal(err)
 		}
-		prices = append(prices, p)
-	}
-	err = rows.Err()
-	if err != nil {
-		log.Fatal(err)
+		defer rows.Close()
+
+		// Read all values from resultset and map it to vector of Pricetype struct
+		for rows.Next() {
+
+			p := new(PriceType)
+			err := rows.Scan(&p.Id, &p.Price_zone_id, &p.Price, &p.Price_zone_name, &p.Event_id, &p.Event_name, &p.Event_date, &p.Session_id, &p.Session_date, &p.Venue_id, &p.Venue_name, &p.Buyer_type_code, &p.Fee, &p.Tax, &p.External_price_id)
+			if err != nil {
+				log.Fatal(err)
+			}
+			prices = append(prices, p)
+		}
+		err = rows.Err()
+		if err != nil {
+			log.Fatal(err)
+		} else {
+			elapsed := time.Since(start)
+			log.Debugf("%v price rows retrieved in %v", len(prices), elapsed)
+		}
+
+		// Store the prices struct to cache for 5 minutes as default
+		pricesCache.Set(key, prices, cache.DefaultExpiration)
+
 	} else {
-		elapsed := time.Since(start)
-		log.Debugf("%v price rows retrieved in %v", len(prices), elapsed)
+
+		// Retrieve prices struct from cache
+		prices = pricesFromCache.([]*PriceType) // Cast interface{} retrieved from cache to []*PriceType
 	}
 
 	// Reuse db connections pool rather than Close database connection

@@ -5,7 +5,6 @@ Find specifications at:
 + [onebox-developer](http://developer.oneboxtickets.com/dynamic-pricing-api)
 
 ## TODO list
-+ cache sql pagination / optimize select
 + add endpoint /sales
 + add endpoint /summaries
 
@@ -27,3 +26,4 @@ Find specifications at:
 + added log levels
 + adapt json responses to API specifications
 + API filters (dates between, page num. (page size with default limit = 10), default values (last 10 items as of now)
++ cache sql pagination / optimize select

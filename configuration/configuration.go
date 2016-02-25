@@ -24,6 +24,7 @@ type Config struct {
 	Mysql_limit_items int
 	Log_file string
 	Log_format string
+	Cache_expiration_time_sec int
 }
 
 
