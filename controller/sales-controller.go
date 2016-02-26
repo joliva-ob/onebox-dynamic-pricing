@@ -4,9 +4,9 @@ package controller
 import (
 
 	"net/http"
-	"encoding/json"
 	"time"
 	"strconv"
+	"encoding/json"
 
 	"github.com/joliva-ob/onebox-dynamic-pricing/dataservice"
 	"github.com/joliva-ob/onebox-dynamic-pricing/authorization"
@@ -15,12 +15,12 @@ import (
 
 
 // Prices response struct
-type PricesResponseType struct {
+type SalesResponseType struct {
 
 	Version string `json:"version"`
 	RequestDate time.Time `json:"request_date"`
 	Parameters ParametersResponseType `json:"parameters"`
-	Prices []*dataservice.PriceType `json:"prices"`
+	Sales []*dataservice.SaleType `json:"sales"`
 }
 
 
@@ -28,15 +28,15 @@ type PricesResponseType struct {
 /**
  * Prices resource endpoint
  */
-func PricesController(w http.ResponseWriter, request *http.Request) {
+func SalesController(w http.ResponseWriter, request *http.Request) {
 
-	log.Infof( "/prices request received." )
+	log.Infof( "/sales request received." )
 	start := time.Now()
 
 	// Check authorization
 	if !authorization.Authorize( request.Header.Get("Authorization") ) {
 		w.WriteHeader(http.StatusUnauthorized)
-		log.Errorf("/prices status 401 error unauthorized.")
+		log.Errorf("/sales status 401 error unauthorized.")
 		return
 	}
 
@@ -55,33 +55,27 @@ func PricesController(w http.ResponseWriter, request *http.Request) {
 	}
 
 	// Retrieve requested resource information
-	prices := dataservice.GetPrices(startDate, endDate, page, configuration.GetConfig())
+	sales := dataservice.GetSales(startDate, endDate, page, configuration.GetConfig())
 
 	// Set json response struct
 	var params ParametersResponseType
 	params.StartDate = startDate
 	params.EndDate = endDate
 	params.Page = page
-	var pricesresponse PricesResponseType
-	pricesresponse.Parameters = params
-	pricesresponse.RequestDate = time.Now()
-	pricesresponse.Version = "1.0"
-	pricesresponse.Prices = prices
-
-	pricesjson, err := json.Marshal(pricesresponse)
-	if err != nil {
-		w.WriteHeader(http.StatusNoContent)
-		log.Errorf("/prices status 204 error no content.")
-		return
-	}
+	var salesresponse SalesResponseType
+	salesresponse.Parameters = params
+	salesresponse.RequestDate = time.Now()
+	salesresponse.Version = "1.0"
+	salesresponse.Sales = sales
+	salesjson, err := json.Marshal(salesresponse)
 
 	// Set response headers
 	w.Header().Set("Content-Type", "application/json")
 
 	// Set response body
-	w.Write(pricesjson)
+	w.Write(salesjson)
 
 	elapsed := time.Since(start)
-	log.Infof( "/prices status 200 response in %v", elapsed )
+	log.Infof( "/sales status 200 response in %v", elapsed )
 
 }

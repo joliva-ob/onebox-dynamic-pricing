@@ -38,7 +38,8 @@ func main() {
 
 	// Create the router to handle requests
 	router := mux.NewRouter().StrictSlash(true)
-	router.HandleFunc("/prices", controller.PricesController) // General welcome endpoint
+	router.HandleFunc("/prices", controller.PricesController) // Prices endpoint
+	router.HandleFunc("/sales", controller.SalesController) // Sales endpoint
 
 	// Starting server on given port number
 	log.Fatal( http.ListenAndServe(":" + config.Server_port, router) ) // Start the server at listening port

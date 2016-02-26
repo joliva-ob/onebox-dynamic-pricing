@@ -14,6 +14,7 @@ Find specifications at:
 + Link oauth to the server oauth
 + version history
 + API links
++ Track and audit to monitoring api console
 
 ## DONE list
 + initial version from db to json server endpoint
