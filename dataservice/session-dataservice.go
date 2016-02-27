@@ -41,7 +41,7 @@ func GetSession(sessionId int, config configuration.Config) *SessionType {
 	var err error
 
 	// Get the string associated with the key from the cache
-	sessionFromCache, found := sessionCache.Get(key)
+	sessionFromCache, found := sessionsCache.Get(key)
 	if !found {
 
 		// Retrieve from DB
@@ -68,7 +68,7 @@ func GetSession(sessionId int, config configuration.Config) *SessionType {
 		}
 
 		// Store the prices struct to cache for 5 minutes as default
-		sessionCache.Set(key, session, cache.DefaultExpiration)
+		sessionsCache.Set(key, session, cache.DefaultExpiration)
 
 	} else {
 

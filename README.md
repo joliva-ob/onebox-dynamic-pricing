@@ -7,6 +7,8 @@ Find specifications at:
 ## TODO list
 + add endpoint /sales
 + add endpoint /summaries
++ filter by price_id
++ add url to each response paramters
 
 ## Optional TODO list
 + handle panic errors and recover
@@ -15,7 +17,7 @@ Find specifications at:
 + version history
 + API links
 + Track and audit to monitoring api console
-+ Add missing information to datasources. link event with session and entity type venue (DB, Solr, couch,...)
+
 
 ## DONE list
 + initial version from db to json server endpoint
@@ -29,3 +31,4 @@ Find specifications at:
 + adapt json responses to API specifications
 + API filters (dates between, page num. (page size with default limit = 10), default values (last 10 items as of now)
 + cache sql pagination / optimize select
++ Add missing information to datasources. link event with session and entity type venue (DB, Solr, couch,...)

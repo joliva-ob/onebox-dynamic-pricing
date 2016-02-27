@@ -12,27 +12,19 @@ import (
 
 
 // ELK Sale struct
-type SaleType struct{
+type SaleElkType struct{
 
-	Id int `json:"id"`
-	Event_id int `json:"event_id"`
-	Event_name string `json:"event_name"`
-	Event_date string `json:"event_date"`
-	Transaction_date string `json:"transaction_date"`
-	Transaction_type string `json:"transaction_type"`
-	Buyer_type_code string `json:"buyer_type_code"`
-	Products_number int `json:"products_number"`
-	Channel_id string `json:"channel_id"`
-	Products []*ProductType `json:"products"`
-
+	Code int `json:"code"`
+	Token int `json:"token"`
+	Products []*ProductElkType `json:"products"`
 }
 
 
 // ELK Product struct
-type ProductType struct {
+type ProductElkType struct {
 
-	Id int `json:"id"`
-	Session_id int `json:"session_id"`
+	EventId int `json:"eventId"`
+	SessionId int `json:"sessionId"`
 }
 
 
@@ -43,9 +35,9 @@ type ProductType struct {
  *
  * http://go-database-sql.org/accessing.html
  */
-func GetSales(date_from string, date_to string, page int, config configuration.Config) []*SaleType {
+func GetSales(date_from string, date_to string, page int, config configuration.Config) []*SaleElkType {
 
-	var sales []*SaleType
+	var sales []*SaleElkType
 
 
 	return sales

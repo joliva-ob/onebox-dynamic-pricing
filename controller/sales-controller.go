@@ -20,7 +20,7 @@ type SalesResponseType struct {
 	Version string `json:"version"`
 	RequestDate time.Time `json:"request_date"`
 	Parameters ParametersResponseType `json:"parameters"`
-	Sales []*dataservice.SaleType `json:"sales"`
+	Sales []*dataservice.SaleElkType `json:"sales"`
 }
 
 

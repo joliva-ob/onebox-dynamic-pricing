@@ -20,3 +20,17 @@
 12:05:38.266 INFO 003 ▶ PricesController: [0m /prices request received.
 [36m12:05:39.523 DEBU 004 ▶ GetPrices: [0m 100 price rows retrieved in 1.255420216s
 12:05:39.526 INFO 005 ▶ PricesController: [0m /prices status 200 response in 1.259077485s
+[36m12:29:54.409 DEBU 001 ▶ Initialize: [0m Dataservice initialized with a DB max pool of: 3
+12:29:54.410 INFO 002 ▶ main: [0m dynamic-pricing started with environment: dev and listening in port: 8000
+[36m12:33:08.644 DEBU 001 ▶ Initialize: [0m DB dataservice initialized with a max pool of: 3
+[36m12:33:08.644 DEBU 002 ▶ Initialize: [0m Elasticsearch connected to host: pre.elasticsearch1.oneboxtickets.com
+[36m12:33:08.644 DEBU 003 ▶ Initialize: [0m Prices Cache initialized with eviction time: 60 sec
+[36m12:33:08.644 DEBU 004 ▶ Initialize: [0m Sessions Cache initialized with eviction time: 60 sec
+[36m12:33:08.644 DEBU 005 ▶ Initialize: [0m Sales Cache initialized with eviction time: 60 sec
+12:33:08.644 INFO 006 ▶ main: [0m dynamic-pricing started with environment: dev and listening in port: 8000
+[36m12:34:07.483 DEBU 001 ▶ Initialize: [0m DB dataservice initialized to: joliva:cvEzQVGmKWXm@tcp(PRE.bbdd-cpanel.oneboxtickets.com:3306)/ob_cpanel with a max pool of: 3
+[36m12:34:07.484 DEBU 002 ▶ Initialize: [0m Elasticsearch connected to host: pre.elasticsearch1.oneboxtickets.com
+[36m12:34:07.484 DEBU 003 ▶ Initialize: [0m Prices Cache initialized with eviction time: 60 sec
+[36m12:34:07.484 DEBU 004 ▶ Initialize: [0m Sessions Cache initialized with eviction time: 60 sec
+[36m12:34:07.484 DEBU 005 ▶ Initialize: [0m Sales Cache initialized with eviction time: 60 sec
+12:34:07.484 INFO 006 ▶ main: [0m dynamic-pricing started with environment: dev and listening in port: 8000
