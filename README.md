@@ -15,6 +15,7 @@ Find specifications at:
 + version history
 + API links
 + Track and audit to monitoring api console
++ Add missing information to datasources. link event with session and entity type venue (DB, Solr, couch,...)
 
 ## DONE list
 + initial version from db to json server endpoint

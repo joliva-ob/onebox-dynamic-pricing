@@ -19,12 +19,20 @@ var log = logging.MustGetLogger("dynamic-pricing")
 type Config struct {
 	Server_port string
 	Prices_sql string
+	Session_sql string
 	Mysql_conn   string
 	Mysql_max_conn int
 	Mysql_limit_items int
 	Log_file string
 	Log_format string
 	Cache_expiration_time_sec int
+	Elasticsearch_name string
+	Elasticsearch_value string
+	Elasticsearch_usage string
+	Sales_elk_index string
+	Sales_elk_filter_eventId string
+	Sales_elk_filter_dates string
+	Sales_elk_filter_eventId_dates string
 }
 
 

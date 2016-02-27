@@ -41,15 +41,15 @@ func PricesController(w http.ResponseWriter, request *http.Request) {
 	}
 
 	// GET request params
-	startDate = request.URL.Query().Get(dataservice.START_DATE)
+	startDate = request.URL.Query().Get(START_DATE)
 	if startDate ==  "" {
-		startDate = time.Now().AddDate(0, -1, 0).Format(dataservice.DATE_FORMAT_SHORT)
+		startDate = time.Now().AddDate(0, -1, 0).Format(DATE_FORMAT_SHORT)
 	}
-	endDate = request.URL.Query().Get(dataservice.END_DATE)
+	endDate = request.URL.Query().Get(END_DATE)
 	if endDate == "" {
-		endDate = time.Now().Format(dataservice.DATE_FORMAT_SHORT)
+		endDate = time.Now().Format(DATE_FORMAT_SHORT)
 	}
-	page, err := strconv.Atoi(request.URL.Query().Get(dataservice.PAGE))
+	page, err := strconv.Atoi(request.URL.Query().Get(PAGE))
 	if err != nil {
 		page = 0
 	}
