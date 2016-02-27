@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1138de0b-8e27-47d6-9447-32a7feb228e0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/configuration/configuration.go" afterPath="$PROJECT_DIR$/configuration/configuration.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/sales-controller.go" afterPath="$PROJECT_DIR$/controller/sales-controller.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dataservice/dataservice.go" afterPath="$PROJECT_DIR$/dataservice/dataservice.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dataservice/sales-dataservice.go" afterPath="$PROJECT_DIR$/dataservice/sales-dataservice.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dataservice/session-dataservice.go" afterPath="$PROJECT_DIR$/dataservice/session-dataservice.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic-pricing.log" afterPath="$PROJECT_DIR$/dynamic-pricing.log" />
-    </list>
+    <list default="true" id="1138de0b-8e27-47d6-9447-32a7feb228e0" name="Default" comment="" />
     <ignored path="onebox-dynamic-pricing.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -964,12 +956,12 @@
       <workItem from="1454758784792" duration="9664000" />
       <workItem from="1455225960233" duration="5043000" />
       <workItem from="1455299538257" duration="39881000" />
-      <workItem from="1456318766324" duration="22472000" />
+      <workItem from="1456318766324" duration="22587000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81098000" />
+    <option name="totallyTimeSpent" value="81213000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="975" height="800" extended-state="0" />
