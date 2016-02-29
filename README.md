@@ -8,6 +8,7 @@ Find specifications at:
 + add endpoint /sales
 + add endpoint /summaries
 + filter by price_id
++ filter by sale_id
 + add url to each response paramters
 
 ## Optional TODO list
