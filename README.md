@@ -6,7 +6,6 @@ Find specifications at:
 
 
 ## TODO list
-+ add dataservice getSale and cache them
 + filter by price_id
 + filter by sale_id
 + add endpoint /summaries

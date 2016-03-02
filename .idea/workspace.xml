@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1138de0b-8e27-47d6-9447-32a7feb228e0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/configuration/configuration.go" afterPath="$PROJECT_DIR$/configuration/configuration.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/controller.go" afterPath="$PROJECT_DIR$/controller/controller.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/sales-controller.go" afterPath="$PROJECT_DIR$/controller/sales-controller.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dataservice/dataservice.go" afterPath="$PROJECT_DIR$/dataservice/dataservice.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dataservice/prices-dataservice.go" afterPath="$PROJECT_DIR$/dataservice/prices-dataservice.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dataservice/sales-dataservice.go" afterPath="$PROJECT_DIR$/dataservice/sales-dataservice.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dataservice/session-dataservice.go" afterPath="$PROJECT_DIR$/dataservice/session-dataservice.go" />
     </list>
     <ignored path="onebox-dynamic-pricing.iws" />
@@ -42,10 +36,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="dynamic-pricing.go" pinned="false" current-in-tab="false">
+      <file leaf-file-name="dynamic-pricing.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dynamic-pricing.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="0.5952381">
               <caret line="41" column="77" selection-start-line="41" selection-start-column="77" selection-end-line="41" selection-end-column="77" />
               <folding />
             </state>
@@ -56,7 +50,7 @@
         <entry file="file://$PROJECT_DIR$/controller/sales-controller.go">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="94" column="27" selection-start-line="94" selection-start-column="27" selection-end-line="94" selection-end-column="27" />
+              <caret line="171" column="37" selection-start-line="171" selection-start-column="37" selection-end-line="171" selection-end-column="37" />
               <folding>
                 <element signature="e#21#262#0" expanded="true" />
               </folding>
@@ -68,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/dataservice/session-dataservice.go">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+              <caret line="57" column="190" selection-start-line="57" selection-start-column="190" selection-end-line="57" selection-end-column="190" />
               <folding />
             </state>
           </provider>
@@ -118,11 +112,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.22696011">
-              <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+            <state vertical-scroll-proportion="-3.6206896">
+              <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -183,9 +177,9 @@
         <option value="$PROJECT_DIR$/dataservice/dataservice.go" />
         <option value="$PROJECT_DIR$/configuration/configuration.go" />
         <option value="$PROJECT_DIR$/controller/controller.go" />
+        <option value="$PROJECT_DIR$/dataservice/sales-dataservice.go" />
         <option value="$PROJECT_DIR$/dataservice/session-dataservice.go" />
         <option value="$PROJECT_DIR$/controller/sales-controller.go" />
-        <option value="$PROJECT_DIR$/dataservice/sales-dataservice.go" />
         <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
@@ -964,12 +958,12 @@
       <workItem from="1454758784792" duration="9664000" />
       <workItem from="1455225960233" duration="5043000" />
       <workItem from="1455299538257" duration="39881000" />
-      <workItem from="1456318766324" duration="48881000" />
+      <workItem from="1456318766324" duration="49272000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107507000" />
+    <option name="totallyTimeSpent" value="107898000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
@@ -1298,14 +1292,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dynamic-pricing.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="77" selection-start-line="41" selection-start-column="77" selection-end-line="41" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/go/src/strings/strings.go">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6706349">
@@ -1330,29 +1316,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dataservice/session-dataservice.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dataservice/dataservice.go">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="33" column="27" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/sales-controller.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="94" column="27" selection-start-line="94" selection-start-column="27" selection-end-line="94" selection-end-column="27" />
-          <folding>
-            <element signature="e#21#262#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1384,15 +1352,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dataservice/session-dataservice.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="57" column="190" selection-start-line="57" selection-start-column="190" selection-end-line="57" selection-end-column="190" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/sales-controller.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="171" column="37" selection-start-line="171" selection-start-column="37" selection-end-line="171" selection-end-column="37" />
+          <folding>
+            <element signature="e#21#262#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22696011">
-          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+        <state vertical-scroll-proportion="-3.6206896">
+          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
           <folding />
         </state>
       </provider>
       <provider editor-type-id="MarkdownPreviewEditor">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dynamic-pricing.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5952381">
+          <caret line="41" column="77" selection-start-line="41" selection-start-column="77" selection-end-line="41" selection-end-column="77" />
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>

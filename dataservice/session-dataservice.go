@@ -22,6 +22,7 @@ type SessionType struct{
 	Event_name string `json:"event_name"`
 	Venue_id int `json:"venue_id"`
 	Venue_name string `json:"venue_name"`
+	Price float32
 }
 
 
@@ -54,7 +55,7 @@ func GetSession(sessionId int, config configuration.Config) *SessionType {
 		// Read all values from resultset and map it to vector of Pricetype struct
 		for rows.Next() {
 
-			err := rows.Scan(&session.Session_id, &session.Session_name, &session.Session_date, &session.Event_id, &session.Event_name, &session.Venue_id, &session.Venue_name)
+			err := rows.Scan(&session.Session_id, &session.Session_name, &session.Session_date, &session.Event_id, &session.Event_name, &session.Venue_id, &session.Venue_name, &session.Price)
 			if err != nil {
 				log.Fatal(err)
 			}

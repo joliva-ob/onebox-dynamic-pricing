@@ -169,7 +169,7 @@ func transformProductsDbToProductsResponse( productsDb []*dataservice.ProductElk
 		product.VenueName = session.Venue_name
 		product.PriceId = productsDb[i].TicketData.PriceZoneId
 		product.PriceZoneId = productsDb[i].TicketData.PriceZoneId
-//		product.Price = dataservice.getPrice( product.PriceId ) // TODO
+		product.Price = session.Price
 		product.Section = productsDb[i].TicketData.SectorName
 		product.Seat = productsDb[i].TicketData.NumSeat
 		product.Row = productsDb[i].TicketData.RowOrder
