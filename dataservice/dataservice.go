@@ -17,6 +17,9 @@ import (
 
 const (
 	MYSQL_DRIVER_NAME = "mysql"
+	EVENT_ID = "!eventId!"
+	START_DATE = "!startDate!"
+	END_DATE = "!endDate!"
 )
 
 
@@ -30,12 +33,16 @@ var (
 	sessionsCache *cache.Cache
 	salesCache *cache.Cache
 	elk_conn *elastigo.Conn
+	config configuration.Config
 )
 
 
 
 // Initialize pool database and set properties from config
-func Initialize( config configuration.Config ){
+func Initialize( c configuration.Config ){
+
+	// Set configuration
+	config = c
 
 	if !isInitialized {
 

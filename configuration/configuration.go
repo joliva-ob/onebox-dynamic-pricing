@@ -35,7 +35,6 @@ type Config struct {
 	Sales_elk_index string
 	Sales_elk_filter_eventId string
 	Sales_elk_filter_dates string
-	Sales_elk_filter_eventId_dates string
 }
 
 
@@ -80,7 +79,7 @@ func GetLog() *logging.Logger{
 
 
 // Return the already loaded configuration
-func GetConfig() Config{
+func GetConfig() Config {
 	return config
 }
 

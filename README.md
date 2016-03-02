@@ -4,16 +4,19 @@ Find specifications at:
 + [github](https://github.com/joliva-ob/onebox-dynamic-pricing-api)
 + [onebox-developer](http://developer.oneboxtickets.com/dynamic-pricing-api)
 
+
 ## TODO list
-+ add endpoint /sales
-+ add endpoint /summaries
++ add dataservice getSale and cache them
 + filter by price_id
 + filter by sale_id
-+ add url to each response paramters
++ add endpoint /summaries
++ add url to each response parameters
+
 
 ## Optional TODO list
 + handle panic errors and recover
-+ catch mysql responses, coger informacion de DAL-mysql o de elasticsearch o MS de prices, TTL 1 min.
++ cache mysql responses
++ coger informacion de DAL-mysql o de elasticsearch o MS de prices, TTL 1 min.
 + Link oauth to the server oauth
 + version history
 + API links
@@ -33,3 +36,5 @@ Find specifications at:
 + API filters (dates between, page num. (page size with default limit = 10), default values (last 10 items as of now)
 + cache sql pagination / optimize select
 + Add missing information to datasources. link event with session and entity type venue (DB, Solr, couch,...)
++ add endpoint /sales
++ add cache to sales-dataservice.getSales

@@ -12,6 +12,8 @@ const (
 	END_DATE = "end_date"
 	PAGE = "page"
 	DATE_FORMAT_SHORT = "2006-01-02"
+	EVENT_ID = "event_id"
+	TRANSACTION_SALE_TYPE = "SALE"
 )
 
 
@@ -20,6 +22,7 @@ type ParametersResponseType struct {
 
 	StartDate string `json:"start_date"`
 	EndDate string `json:"end_date"`
+	EventId int `json:event_id`
 	Page int `json:"page"`
 }
 
@@ -28,3 +31,4 @@ type ParametersResponseType struct {
 var log *logging.Logger = configuration.GetLog()
 var startDate string
 var endDate string
+var eventId int

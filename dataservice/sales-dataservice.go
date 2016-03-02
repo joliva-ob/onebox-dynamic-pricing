@@ -6,30 +6,56 @@ import (
 
 	"encoding/json"
 	"strings"
+	"strconv"
 
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/joliva-ob/onebox-dynamic-pricing/configuration"
 
 )
 
-
-type OrderElkType struct {
-	Doc SaleElkType
+// Elk parent level
+type OrderDocElkType struct {
+	Doc OrderElkType `json:"doc"`
 }
 
-// ELK Sale struct
-type SaleElkType struct{
+// ELK Order struct
+type OrderElkType struct {
 
+	Date DateElkType `json:"date"`
 	Code string `json:"code"`
-	Token string `json:"token"`
 	Products []*ProductElkType `json:"products"`
+	Price PriceElkType `json:"price"`
+	OrderData OrderDataElkType `json:"orderData"`
+}
+
+type OrderDataElkType struct {
+	ChannelType string `json:"channelType"`
+	ChannelId int `json:"channelId"`
+}
+
+type PriceElkType struct {
+	FinalPrice float32 `json:"finalPrice"`
+	BasePrice float32 `json:"basePrice"`
+}
+
+type DateElkType struct {
+	Purchased string `json:"purchased"`
 }
 
 // ELK Product struct
 type ProductElkType struct {
 
+	ProductId string `json:"id"`
 	EventId int `json:"eventId"`
 	SessionId int `json:"sessionId"`
+	TicketData TicketDataElkType `json:"ticketData"`
+}
+
+type TicketDataElkType struct {
+
+	PriceZoneId int `json:"priceZoneId"`
+	SectorName string `json:"sectorName"`
+	RowOrder int `json:"rowOrder"`
+	NumSeat string `json:"numSeat"`
 }
 
 
@@ -40,36 +66,67 @@ type ProductElkType struct {
  *
  * http://go-database-sql.org/accessing.html
  */
-func GetSales(date_from string, date_to string, page int, config configuration.Config) []*SaleElkType {
+func GetSales(dateFrom string, dateTo string, eventId int, page int) []*OrderDocElkType {
 
-	var sales []*SaleElkType
-	var orders []*OrderElkType
+	var sales []*OrderDocElkType
 	args := make(map[string]interface{})
 	args["size"] = config.Elasticsearch_limit_items
 	from := page*config.Elasticsearch_limit_items
 	args["from"] = from
+	offset := config.Mysql_limit_items * page
+	key := dateFrom + dateTo + strconv.Itoa(config.Mysql_limit_items) + strconv.Itoa(offset) + strconv.Itoa(eventId)
 
-	query := strings.Replace(config.Sales_elk_filter_eventId,"!eventId!","2627",-1)
+	// Get the string associated with the key from the cache
+	salesFromCache, found := salesCache.Get(key)
+	if !found {
 
-	// Elasticsearch Search
-	out, err := elk_conn.Search(config.Sales_elk_index, "", args, query)
-	if len(out.Hits.Hits) > 0	{
+		// Get the query and fill placeholders properly
+		query := getQuery(dateFrom, dateTo, eventId)
 
-		for i := 0; i < out.Hits.Len(); i++ {
+		// Elasticsearch Search
+		out, err := elk_conn.Search(config.Sales_elk_index, "", args, query)
+		if len(out.Hits.Hits) > 0 {
 
-			order := new(OrderElkType)
-			err := json.Unmarshal(*out.Hits.Hits[i].Source, &order)
-			if err != nil {
-				log.Errorf("Error occurred while unmarshalling elasticsearch sale: %v", err)
+			for i := 0; i < out.Hits.Len(); i++ {
+
+				sale := new(OrderDocElkType)
+				json.Unmarshal(*out.Hits.Hits[i].Source, &sale)
+				sales = append(sales, sale)
 			}
-			orders = append(orders, order)
-			log.Debugf("order code: %v\n", order.Doc.Code)
 		}
-	}
-	if err != nil {
-		log.Errorf("Error occurred while trying to retrieve elasticsearch sales: %v", err)
+		if err != nil {
+			log.Errorf("Error occurred while trying to retrieve elasticsearch sales: %v", err)
+		}
+
+	} else {
+
+		// Retrieve sales struct from cache
+		sales = salesFromCache.([]*OrderDocElkType) // Cast interface{} retrieved from cache to []*PriceType
 	}
 
 	return sales
 }
 
+
+
+// Get the correct query from configuration
+// depending on the Url params
+// eventId = -1 means there is no event id requested
+func getQuery(dateFrom string, dateTo string, eventId int)  string {
+
+	var query string
+
+	if eventId != -1 && eventId > 0 {
+
+		query = config.Sales_elk_filter_eventId
+		query = strings.Replace(query,EVENT_ID,strconv.Itoa(eventId),1)
+
+	} else {
+
+		query = config.Sales_elk_filter_dates
+		query = strings.Replace(query,START_DATE,dateFrom,1)
+		query = strings.Replace(query,END_DATE,dateTo,1)
+	}
+
+	return query
+}

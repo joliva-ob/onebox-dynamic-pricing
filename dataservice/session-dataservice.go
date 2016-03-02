@@ -16,7 +16,7 @@ import (
 type SessionType struct{
 
 	Session_id int `json:"id"`
-	Session_name int `json:"session_name"`
+	Session_name string `json:"session_name"`
 	Session_date string `json:"session_date"`
 	Event_id int `json:"event_id"`
 	Event_name string `json:"event_name"`

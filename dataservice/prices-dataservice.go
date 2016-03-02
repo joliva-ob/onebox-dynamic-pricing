@@ -17,7 +17,7 @@ import (
 type PriceType struct{
 
 	Id int `json:"id"`
-	Price_zone_id int `json:"price_zone_id"`
+//	Price_zone_id int `json:"id"`
 	Price float32 `json:"price"`
 	Price_zone_name string `json:"price_zone_name"`
 	Event_id int `json:"event_id"`
@@ -66,7 +66,8 @@ func GetPrices(date_from string, date_to string, page int, config configuration.
 		for rows.Next() {
 
 			p := new(PriceType)
-			err := rows.Scan(&p.Id, &p.Price_zone_id, &p.Price, &p.Price_zone_name, &p.Event_id, &p.Event_name, &p.Event_date, &p.Session_id, &p.Session_date, &p.Venue_id, &p.Venue_name, &p.Buyer_type_code, &p.Fee, &p.Tax, &p.External_price_id)
+//			err := rows.Scan(&p.Id, &p.Price_zone_id, &p.Price, &p.Price_zone_name, &p.Event_id, &p.Event_name, &p.Event_date, &p.Session_id, &p.Session_date, &p.Venue_id, &p.Venue_name, &p.Buyer_type_code, &p.Fee, &p.Tax, &p.External_price_id)
+			err := rows.Scan(&p.Id, &p.Price, &p.Price_zone_name, &p.Event_id, &p.Event_name, &p.Event_date, &p.Session_id, &p.Session_date, &p.Venue_id, &p.Venue_name, &p.Buyer_type_code, &p.Fee, &p.Tax, &p.External_price_id)
 			if err != nil {
 				log.Fatal(err)
 			}
