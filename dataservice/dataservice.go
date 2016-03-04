@@ -17,9 +17,9 @@ import (
 
 const (
 	MYSQL_DRIVER_NAME = "mysql"
-	EVENT_ID = "!eventId!"
-	START_DATE = "!startDate!"
-	END_DATE = "!endDate!"
+	EVENT_ID = "$eventId"
+	START_DATE = "$startDate"
+	END_DATE = "$endDate"
 )
 
 
@@ -50,23 +50,23 @@ func Initialize( c configuration.Config ){
 		db, _ = sql.Open(MYSQL_DRIVER_NAME, config.Mysql_conn)
 		db.SetMaxOpenConns(config.Mysql_max_conn)
 		db, _ = sql.Open(MYSQL_DRIVER_NAME, config.Mysql_conn)
-		log.Debugf("DB dataservice initialized to: %v with a max pool of: %v", config.Mysql_conn, config.Mysql_max_conn)
+		log.Infof("DB dataservice initialized to: %v with a max pool of: %v", config.Mysql_conn, config.Mysql_max_conn)
 
 		// Open elasticsearch connection
 		elk_host := flag.String(config.Elasticsearch_name, config.Elasticsearch_value, config.Elasticsearch_usage)
 		elk_conn = elastigo.NewConn()
 		flag.Parse()
 		elk_conn.Domain = *elk_host
-		log.Debugf("Elasticsearch connected to host: %v", config.Elasticsearch_value)
+		log.Infof("Elasticsearch connected to host: %v", config.Elasticsearch_value)
 
 		// Create a cache with a default expiration time of N seconds, and which
 		// purges expired items every 30 seconds
 		pricesCache = cache.New( time.Duration(config.Cache_prices_expiration_in_sec*1000*1000*1000), 30*time.Second ) // Duration constructor needs nanoseconds
-		log.Debugf("Prices Cache initialized with eviction time: %v sec", config.Cache_prices_expiration_in_sec)
+		log.Infof("Prices Cache initialized with eviction time: %v sec", config.Cache_prices_expiration_in_sec)
 		sessionsCache = cache.New( time.Duration(config.Cache_sessions_expiration_in_sec*1000*1000*1000), 30*time.Second ) // Duration constructor needs nanoseconds
-		log.Debugf("Sessions Cache initialized with eviction time: %v sec", config.Cache_sessions_expiration_in_sec)
+		log.Infof("Sessions Cache initialized with eviction time: %v sec", config.Cache_sessions_expiration_in_sec)
 		salesCache = cache.New( time.Duration(config.Cache_sales_expiration_in_sec*1000*1000*1000), 30*time.Second ) // Duration constructor needs nanoseconds
-		log.Debugf("Sales Cache initialized with eviction time: %v sec", config.Cache_sales_expiration_in_sec)
+		log.Infof("Sales Cache initialized with eviction time: %v sec", config.Cache_sales_expiration_in_sec)
 
 		isInitialized = true
 

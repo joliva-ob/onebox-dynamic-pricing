@@ -3,23 +3,28 @@ A golang implementation of onebox-dynamic-pricing-api, an API to share sails and
 Find specifications at:
 + [github](https://github.com/joliva-ob/onebox-dynamic-pricing-api)
 + [onebox-developer](http://developer.oneboxtickets.com/dynamic-pricing-api)
+Compiled with runtime with: 
++ GOOS=windows GOARCH=386 go build -o dynamic-pricing.exe dynamic-pricing.go
++ GOOS=linux GOARCH=386 go build -o dynamic-pricing dynamic-pricing.go
++ GOOS=darwin GOARCH=386 go build -o dynamic-pricing dynamic-pricing.go
 
 
 ## TODO list
++ adjust to specifications
 + filter by price_id
 + filter by sale_id
++ handle panic errors and recover
 + add endpoint /summaries
-+ add url to each response parameters
 
 
 ## Optional TODO list
-+ handle panic errors and recover
-+ cache mysql responses
 + coger informacion de DAL-mysql o de elasticsearch o MS de prices, TTL 1 min.
 + Link oauth to the server oauth
 + version history
 + API links
 + Track and audit to monitoring api console
++ add unit tests and mocks
++ add log level as a main app argument
 
 
 ## DONE list
@@ -37,3 +42,4 @@ Find specifications at:
 + Add missing information to datasources. link event with session and entity type venue (DB, Solr, couch,...)
 + add endpoint /sales
 + add cache to sales-dataservice.getSales
++ add usage instructions

@@ -36,7 +36,7 @@ func PricesController(w http.ResponseWriter, request *http.Request) {
 	// Check authorization
 	if !authorization.Authorize( request.Header.Get("Authorization") ) {
 		w.WriteHeader(http.StatusUnauthorized)
-		log.Errorf("/prices status 401 error unauthorized.")
+		log.Warningf("/prices status 401 error unauthorized.")
 		return
 	}
 

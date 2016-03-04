@@ -74,14 +74,14 @@ func GetSales(dateFrom string, dateTo string, eventId int, page int) []*OrderDoc
 	from := page*config.Elasticsearch_limit_items
 	args["from"] = from
 	offset := config.Mysql_limit_items * page
-	key := dateFrom + dateTo + strconv.Itoa(config.Mysql_limit_items) + strconv.Itoa(offset) + strconv.Itoa(eventId)
+	key := dateFrom + dateTo + strconv.Itoa(config.Elasticsearch_limit_items) + strconv.Itoa(offset) + strconv.Itoa(eventId)
 
 	// Get the string associated with the key from the cache
 	salesFromCache, found := salesCache.Get(key)
 	if !found {
 
 		// Get the query and fill placeholders properly
-		query := getQuery(dateFrom, dateTo, eventId)
+		query := GetQuery(dateFrom, dateTo, eventId)
 
 		// Elasticsearch Search
 		out, err := elk_conn.Search(config.Sales_elk_index, "", args, query)
@@ -112,13 +112,13 @@ func GetSales(dateFrom string, dateTo string, eventId int, page int) []*OrderDoc
 // Get the correct query from configuration
 // depending on the Url params
 // eventId = -1 means there is no event id requested
-func getQuery(dateFrom string, dateTo string, eventId int)  string {
+func GetQuery(dateFrom string, dateTo string, eventId int)  string {
 
 	var query string
 
 	if eventId != -1 && eventId > 0 {
 
-		query = config.Sales_elk_filter_eventId
+		query = config.Sales_elk_filter_event
 		query = strings.Replace(query,EVENT_ID,strconv.Itoa(eventId),1)
 
 	} else {

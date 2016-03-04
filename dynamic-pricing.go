@@ -11,6 +11,7 @@ import (
 	"github.com/joliva-ob/onebox-dynamic-pricing/dataservice"
 	"github.com/joliva-ob/onebox-dynamic-pricing/configuration"
 	"github.com/joliva-ob/onebox-dynamic-pricing/controller"
+	"fmt"
 )
 
 
@@ -30,6 +31,7 @@ var log *logging.Logger
 func main() {
 
 	// Load configuration to start application
+	checkParams( os.Args )
 	var filename = os.Args[1] + "/" + os.Args[2] + ".yml"
 	config = configuration.LoadConfiguration(filename)
 	log = configuration.GetLog()
@@ -48,3 +50,17 @@ func main() {
 
 
 
+
+// Check the arguments to launch the application
+// and provide specifications if needed.
+func  checkParams(  args []string ) {
+
+	if len(args) < 2 {
+
+		fmt.Println("ERROR: invalid arguments number!")
+		fmt.Println("Usage:")
+		fmt.Println("./dynamic-pricing [path-to-config-files] [environment] [log-level]")
+		os.Exit(0)
+	}
+
+}

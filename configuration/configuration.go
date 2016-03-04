@@ -33,8 +33,8 @@ type Config struct {
 	Elasticsearch_usage string
 	Elasticsearch_limit_items int
 	Sales_elk_index string
-	Sales_elk_filter_eventId string
 	Sales_elk_filter_dates string
+	Sales_elk_filter_event string
 }
 
 

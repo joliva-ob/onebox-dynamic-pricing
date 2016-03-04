@@ -68,7 +68,7 @@ func SalesController(w http.ResponseWriter, request *http.Request) {
 	// Check authorization
 	if !authorization.Authorize( request.Header.Get("Authorization") ) {
 		w.WriteHeader(http.StatusUnauthorized)
-		log.Errorf("/sales status 401 error unauthorized.")
+		log.Warningf("/sales status 401 error unauthorized.")
 		return
 	}
 
@@ -99,6 +99,7 @@ func SalesController(w http.ResponseWriter, request *http.Request) {
 	params.StartDate = startDate
 	params.EndDate = endDate
 	params.Page = page
+	params.EventId = eventId
 	var salesresponse SalesResponseType
 	salesresponse.Parameters = params
 	salesresponse.RequestDate = time.Now()
@@ -128,7 +129,6 @@ func transformDbSalesToSalesResponse( ordersDb []*dataservice.OrderDocElkType ) 
 
 	for i:=0; i<len(ordersDb)-1; i++ {
 
-//		log.Debugf("orderDB locator: %v\n", ordersDb[i].Doc.Code)
 		// Get the cached config details
 		session := dataservice.GetSession( ordersDb[i].Doc.Products[0].SessionId, configuration.GetConfig() )
 
