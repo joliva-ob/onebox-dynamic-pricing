@@ -66,7 +66,7 @@ type TicketDataElkType struct {
  *
  * http://go-database-sql.org/accessing.html
  */
-func GetSales(dateFrom string, dateTo string, eventId int, page int) []*OrderDocElkType {
+func GetSales(dateFrom string, dateTo string, eventId int, page int, saleId string) []*OrderDocElkType {
 
 	var sales []*OrderDocElkType
 	args := make(map[string]interface{})

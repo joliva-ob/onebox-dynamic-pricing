@@ -9,10 +9,10 @@ Compiled with runtime with:
 + GOOS=darwin GOARCH=386 go build -o dynamic-pricing dynamic-pricing.go
 
 
+
 ## TODO list
-+ adjust to specifications
-+ filter by price_id
-+ filter by sale_id
++ eureka details from config
++ export status and version to /info and /health
 + handle panic errors and recover
 + add endpoint /summaries
 
@@ -25,6 +25,8 @@ Compiled with runtime with:
 + Track and audit to monitoring api console
 + add unit tests and mocks
 + add log level as a main app argument
++ filter by price_id (priceZoneId)
++ filter by sale_id
 
 
 ## DONE list
@@ -43,3 +45,5 @@ Compiled with runtime with:
 + add endpoint /sales
 + add cache to sales-dataservice.getSales
 + add usage instructions
++ adjust to specifications
++ register to eureka

@@ -14,6 +14,8 @@ const (
 	DATE_FORMAT_SHORT = "2006-01-02"
 	EVENT_ID = "event_id"
 	TRANSACTION_SALE_TYPE = "SALE"
+	PRICE_ID = "price_id"
+	SALE_ID = "sale_id"
 )
 
 
@@ -32,3 +34,5 @@ var log *logging.Logger = configuration.GetLog()
 var startDate string
 var endDate string
 var eventId int
+var saleId string
+var priceId int

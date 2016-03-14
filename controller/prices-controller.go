@@ -53,9 +53,13 @@ func PricesController(w http.ResponseWriter, request *http.Request) {
 	if err != nil {
 		page = 0
 	}
+	priceId, err = strconv.Atoi(request.URL.Query().Get(PRICE_ID))
+	if err != nil {
+		priceId = -1
+	}
 
 	// Retrieve requested resource information
-	prices := dataservice.GetPrices(startDate, endDate, page, configuration.GetConfig())
+	prices := dataservice.GetPrices(startDate, endDate, page, configuration.GetConfig(), priceId)
 
 	// Set json response struct
 	var params ParametersResponseType

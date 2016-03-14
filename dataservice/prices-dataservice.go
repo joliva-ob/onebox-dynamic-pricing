@@ -9,7 +9,6 @@ import (
 	"github.com/patrickmn/go-cache"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/joliva-ob/onebox-dynamic-pricing/configuration"
-
 )
 
 
@@ -42,12 +41,12 @@ type PriceType struct{
  *
  * http://go-database-sql.org/accessing.html
  */
-func GetPrices(date_from string, date_to string, page int, config configuration.Config) []*PriceType {
+func GetPrices(date_from string, date_to string, page int, config configuration.Config, priceId int) []*PriceType {
 
 	var prices []*PriceType
 	start := time.Now()
 	offset := config.Mysql_limit_items * page
-	key := date_from + date_to + strconv.Itoa(config.Mysql_limit_items) + strconv.Itoa(offset)
+	key := date_from + date_to + strconv.Itoa(config.Mysql_limit_items) + strconv.Itoa(offset) + strconv.Itoa(priceId)
 	var rows *sql.Rows
 	var err error
 
@@ -56,7 +55,15 @@ func GetPrices(date_from string, date_to string, page int, config configuration.
 	if !found {
 
 		// Retrieve from DB
-		rows, err = db.Query(config.Prices_sql, date_from, date_to, config.Mysql_limit_items, offset);
+		if priceId != -1 && priceId > 0 {
+
+			// Filter by PriceId
+			rows, err = db.Query(config.Prices_sql_filter_price_id, priceId, config.Mysql_limit_items, offset);
+		} else {
+
+			// Filter by dates
+			rows, err = db.Query(config.Prices_sql, date_from, date_to, config.Mysql_limit_items, offset);
+		}
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -66,7 +73,6 @@ func GetPrices(date_from string, date_to string, page int, config configuration.
 		for rows.Next() {
 
 			p := new(PriceType)
-//			err := rows.Scan(&p.Id, &p.Price_zone_id, &p.Price, &p.Price_zone_name, &p.Event_id, &p.Event_name, &p.Event_date, &p.Session_id, &p.Session_date, &p.Venue_id, &p.Venue_name, &p.Buyer_type_code, &p.Fee, &p.Tax, &p.External_price_id)
 			err := rows.Scan(&p.Id, &p.Price, &p.Price_zone_name, &p.Event_id, &p.Event_name, &p.Event_date, &p.Session_id, &p.Session_date, &p.Venue_id, &p.Venue_name, &p.Buyer_type_code, &p.Fee, &p.Tax, &p.External_price_id)
 			if err != nil {
 				log.Fatal(err)

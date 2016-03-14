@@ -4,14 +4,15 @@ import (
 
 	"net/http"
 	"os"
+	"fmt"
 
 	"github.com/op/go-logging"
 	"github.com/gorilla/mux"
+	"github.com/hudl/fargo"
 
 	"github.com/joliva-ob/onebox-dynamic-pricing/dataservice"
 	"github.com/joliva-ob/onebox-dynamic-pricing/configuration"
 	"github.com/joliva-ob/onebox-dynamic-pricing/controller"
-	"fmt"
 )
 
 
@@ -19,6 +20,7 @@ import (
 // Global vars
 var config configuration.Config
 var log *logging.Logger
+var eurekaConn fargo.EurekaConnection
 
 
 /**
@@ -37,6 +39,10 @@ func main() {
 	log = configuration.GetLog()
 	dataservice.Initialize(config)
 	log.Infof("dynamic-pricing started with environment: %s and listening in port: %v\n", os.Args[2], config.Server_port)
+
+	// Register to Eureka and then set up to only heartbeat one of them
+	filename = os.Args[1] + "/eureka_" + os.Args[2] + ".gcfg"
+	registerToEureka( filename )
 
 	// Create the router to handle requests
 	router := mux.NewRouter().StrictSlash(true)
@@ -63,4 +69,26 @@ func  checkParams(  args []string ) {
 		os.Exit(0)
 	}
 
+}
+
+
+// Register and keep the eureka connection
+func registerToEureka( configFile string )  {
+
+	eurekaConn, _ = fargo.NewConnFromConfigFile(configFile)
+	hostname, _ := os.Hostname()
+	i := fargo.Instance{
+		HostName:         hostname,
+		Port:             config.Eureka_port,
+		App:              config.Eureka_app_name,
+		IPAddr:           config.Eureka_ip_addr,
+		VipAddress:       config.Eureka_ip_addr,
+		DataCenterInfo:   fargo.DataCenterInfo{Name: fargo.MyOwn},
+		SecureVipAddress: config.Eureka_ip_addr,
+		Status:           fargo.UP,
+	}
+	err := eurekaConn.RegisterInstance(&i)
+	if err != nil {
+		log.Error("%v", err)
+	}
 }

@@ -89,10 +89,11 @@ func SalesController(w http.ResponseWriter, request *http.Request) {
 	if err != nil {
 		eventId = -1
 	}
+	saleId = request.URL.Query().Get(SALE_ID)
 
 
 	// Retrieve requested resource information
-	dbSales := dataservice.GetSales(startDate, endDate, eventId, page)
+	dbSales := dataservice.GetSales(startDate, endDate, eventId, page, saleId)
 
 	// Set json response struct
 	var params ParametersResponseType
