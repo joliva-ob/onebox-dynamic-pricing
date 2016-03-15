@@ -5,21 +5,20 @@ Find specifications at:
 + [onebox-developer](http://developer.oneboxtickets.com/dynamic-pricing-api)
 Compiled with runtime with: 
 + GOOS=windows GOARCH=386 go build -o dynamic-pricing.exe dynamic-pricing.go
-+ GOOS=linux GOARCH=386 go build -o dynamic-pricing dynamic-pricing.go
++ GOOS=linux GOARCH=386 go build -o dynamic-pricing.linux dynamic-pricing.go
 + GOOS=darwin GOARCH=386 go build -o dynamic-pricing dynamic-pricing.go
 
 
 
 ## TODO list
-+ eureka details from config
 + export status and version to /info and /health
 + handle panic errors and recover
 + add endpoint /summaries
++ Link oauth to the server oauth trough eureka register
 
 
 ## Optional TODO list
 + coger informacion de DAL-mysql o de elasticsearch o MS de prices, TTL 1 min.
-+ Link oauth to the server oauth
 + version history
 + API links
 + Track and audit to monitoring api console
@@ -47,3 +46,4 @@ Compiled with runtime with:
 + add usage instructions
 + adjust to specifications
 + register to eureka
++ eureka details from config
