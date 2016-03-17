@@ -62,7 +62,7 @@ type ProductResponseType struct {
  */
 func SalesController(w http.ResponseWriter, request *http.Request) {
 
-	log.Infof( "/sales request received." )
+	log.Infof( "/sales request: %v received from: %v", request.URL, getIP(w, request) )
 	start := time.Now()
 
 	// Check authorization

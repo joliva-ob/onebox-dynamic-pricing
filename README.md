@@ -12,6 +12,7 @@ Compiled with runtime with:
 
 ## TODO list
 + export status and version to /info and /health
++ Añadir identificador único a las transacciones (traceID)
 + handle panic errors and recover
 + add endpoint /summaries
 + Link oauth to the server oauth trough eureka register
@@ -26,6 +27,8 @@ Compiled with runtime with:
 + add log level as a main app argument
 + filter by price_id (priceZoneId)
 + filter by sale_id
++ filter by event_id
+
 
 
 ## DONE list
@@ -47,3 +50,4 @@ Compiled with runtime with:
 + adjust to specifications
 + register to eureka
 + eureka details from config
++ log requested url + origin ip address

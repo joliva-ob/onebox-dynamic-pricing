@@ -30,7 +30,7 @@ type PricesResponseType struct {
  */
 func PricesController(w http.ResponseWriter, request *http.Request) {
 
-	log.Infof( "/prices request received." )
+	log.Infof( "/prices request: %v received from: %v", request.URL, getIP(w, request) )
 	start := time.Now()
 
 	// Check authorization

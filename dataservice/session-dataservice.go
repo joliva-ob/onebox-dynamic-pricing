@@ -3,7 +3,7 @@ package dataservice
 import (
 
 	"database/sql"
-	"time"
+//	"time"
 	"strconv"
 
 	"github.com/patrickmn/go-cache"
@@ -36,7 +36,7 @@ type SessionType struct{
 func GetSession(sessionId int, config configuration.Config) *SessionType {
 
 	session := new(SessionType)
-	start := time.Now()
+//	start := time.Now()
 	key := strconv.Itoa(sessionId)
 	var rows *sql.Rows
 	var err error
@@ -64,8 +64,8 @@ func GetSession(sessionId int, config configuration.Config) *SessionType {
 		if err != nil {
 			log.Fatal(err)
 		} else {
-			elapsed := time.Since(start)
-			log.Debugf("%v id session retrieved in %v", session.Session_id, elapsed)
+//			elapsed := time.Since(start)
+//			log.Debugf("%v id session retrieved in %v", session.Session_id, elapsed)
 		}
 
 		// Store the prices struct to cache for 5 minutes as default
