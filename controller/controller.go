@@ -7,6 +7,7 @@ import (
 
 	"github.com/op/go-logging"
 	"github.com/joliva-ob/onebox-dynamic-pricing/configuration"
+	"github.com/satori/go.uuid"
 )
 
 
@@ -29,6 +30,7 @@ type ParametersResponseType struct {
 	EndDate string `json:"end_date"`
 	EventId int `json:event_id`
 	Page int `json:"page"`
+	TraceId string `json:"trace_id"`
 }
 
 
@@ -61,4 +63,15 @@ func getIP(w http.ResponseWriter, req *http.Request) string {
 	// Header.Get is case-insensitive
 	forward := req.Header.Get("X-Forwarded-For")
 	return forward
+}
+
+
+
+// Generate a universal unique identifier UUID
+func GetUuid() string {
+
+	// Creating UUID Version 4
+	uuid1 := uuid.NewV4()
+
+	return uuid1.String()
 }

@@ -57,6 +57,7 @@
       <root url="file://$PROJECT_DIR$/../../peterhellberg/hiro/.git" />
       <root url="file://$PROJECT_DIR$/../../../golang.org/x/tools/cmd/cover/testdata" />
       <root url="file://$PROJECT_DIR$/../../../golang.org/x/tools/.git" />
+      <root url="file://$PROJECT_DIR$/../../satori/go.uuid/.git" />
       <root url="file://$PROJECT_DIR$/../../go-fsnotify/fsnotify/.git" />
       <root url="file://$PROJECT_DIR$/../../apimatic/unirest-go/.git" />
       <root url="file://$PROJECT_DIR$/../../../code.google.com/p/go.tools/refactor/eg/testdata" />

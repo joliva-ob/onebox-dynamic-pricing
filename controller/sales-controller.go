@@ -62,13 +62,14 @@ type ProductResponseType struct {
  */
 func SalesController(w http.ResponseWriter, request *http.Request) {
 
-	log.Infof( "/sales request: %v received from: %v", request.URL, getIP(w, request) )
+	uuid := GetUuid()
+	log.Infof( "{%v} /sales request %v received from: %v", uuid, request.URL, getIP(w, request) )
 	start := time.Now()
 
 	// Check authorization
 	if !authorization.Authorize( request.Header.Get("Authorization") ) {
 		w.WriteHeader(http.StatusUnauthorized)
-		log.Warningf("/sales status 401 error unauthorized.")
+		log.Warningf("/sales error status 401 unauthorized.")
 		return
 	}
 
@@ -93,7 +94,8 @@ func SalesController(w http.ResponseWriter, request *http.Request) {
 
 
 	// Retrieve requested resource information
-	dbSales := dataservice.GetSales(startDate, endDate, eventId, page, saleId)
+	dbSales := dataservice.GetSales(startDate, endDate, eventId, page, saleId, uuid)
+
 
 	// Set json response struct
 	var params ParametersResponseType
@@ -101,6 +103,7 @@ func SalesController(w http.ResponseWriter, request *http.Request) {
 	params.EndDate = endDate
 	params.Page = page
 	params.EventId = eventId
+	params.TraceId = uuid
 	var salesresponse SalesResponseType
 	salesresponse.Parameters = params
 	salesresponse.RequestDate = time.Now()
@@ -116,7 +119,7 @@ func SalesController(w http.ResponseWriter, request *http.Request) {
 	w.Write(salesjson)
 
 	elapsed := time.Since(start)
-	log.Infof( "/sales status 200 response in %v", elapsed )
+	log.Infof( "{%v} /sales response status 200 in %v", uuid, elapsed )
 
 }
 

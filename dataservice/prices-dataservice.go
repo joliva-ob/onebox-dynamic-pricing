@@ -41,7 +41,7 @@ type PriceType struct{
  *
  * http://go-database-sql.org/accessing.html
  */
-func GetPrices(date_from string, date_to string, page int, config configuration.Config, priceId int) []*PriceType {
+func GetPrices(date_from string, date_to string, page int, config configuration.Config, priceId int, uuid string) []*PriceType {
 
 	var prices []*PriceType
 	start := time.Now()
@@ -84,7 +84,7 @@ func GetPrices(date_from string, date_to string, page int, config configuration.
 			log.Fatal(err)
 		} else {
 			elapsed := time.Since(start)
-			log.Debugf("%v price rows retrieved in %v", len(prices), elapsed)
+			log.Debugf("{%v} %v price rows retrieved in %v", len(prices), elapsed)
 		}
 
 		// Store the prices struct to cache for 5 minutes as default

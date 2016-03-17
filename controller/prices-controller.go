@@ -30,13 +30,14 @@ type PricesResponseType struct {
  */
 func PricesController(w http.ResponseWriter, request *http.Request) {
 
-	log.Infof( "/prices request: %v received from: %v", request.URL, getIP(w, request) )
+	uuid := GetUuid()
+	log.Infof( "{%v} /prices request %v received from: %v", uuid, request.URL, getIP(w, request) )
 	start := time.Now()
 
 	// Check authorization
 	if !authorization.Authorize( request.Header.Get("Authorization") ) {
 		w.WriteHeader(http.StatusUnauthorized)
-		log.Warningf("/prices status 401 error unauthorized.")
+		log.Warningf("/prices error status 401 unauthorized.")
 		return
 	}
 
@@ -59,13 +60,14 @@ func PricesController(w http.ResponseWriter, request *http.Request) {
 	}
 
 	// Retrieve requested resource information
-	prices := dataservice.GetPrices(startDate, endDate, page, configuration.GetConfig(), priceId)
+	prices := dataservice.GetPrices(startDate, endDate, page, configuration.GetConfig(), priceId, uuid)
 
 	// Set json response struct
 	var params ParametersResponseType
 	params.StartDate = startDate
 	params.EndDate = endDate
 	params.Page = page
+	params.TraceId = uuid
 	var pricesresponse PricesResponseType
 	pricesresponse.Parameters = params
 	pricesresponse.RequestDate = time.Now()
@@ -75,7 +77,7 @@ func PricesController(w http.ResponseWriter, request *http.Request) {
 	pricesjson, err := json.Marshal(pricesresponse)
 	if err != nil {
 		w.WriteHeader(http.StatusNoContent)
-		log.Errorf("/prices status 204 error no content.")
+		log.Errorf("/prices error status 204 no content.")
 		return
 	}
 
@@ -86,6 +88,6 @@ func PricesController(w http.ResponseWriter, request *http.Request) {
 	w.Write(pricesjson)
 
 	elapsed := time.Since(start)
-	log.Infof( "/prices status 200 response in %v", elapsed )
+	log.Infof( "{%v} /prices response status 200 in %v", uuid, elapsed )
 
 }
