@@ -20,6 +20,8 @@ const (
 	TRANSACTION_SALE_TYPE = "SALE"
 	PRICE_ID = "price_id"
 	SALE_ID = "sale_id"
+	STATUS_UP = "UP"
+	STATUS_DOWN = "DOWN"
 )
 
 
@@ -43,6 +45,7 @@ var saleId string
 var priceId int
 
 
+
 // https://blog.golang.org/context/userip/userip.go
 // Funtion to retrieve the sender IP from request
 // or from forwared headers instead
@@ -59,8 +62,7 @@ func getIP(w http.ResponseWriter, req *http.Request) string {
 	}
 
 	// This will only be defined when site is accessed via non-anonymous proxy
-	// and takes precedence over RemoteAddr
-	// Header.Get is case-insensitive
+	// and takes precedence over RemoteAddr Header.Get is case-insensitive
 	forward := req.Header.Get("X-Forwarded-For")
 	return forward
 }

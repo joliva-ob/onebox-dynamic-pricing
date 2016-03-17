@@ -48,6 +48,8 @@ func main() {
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/dynamic-pricing-api/1.0/prices", controller.PricesController) // Prices endpoint
 	router.HandleFunc("/dynamic-pricing-api/1.0/sales", controller.SalesController) // Sales endpoint
+	router.HandleFunc("/dynamic-pricing-api/1.0/info", controller.InfoController)
+	router.HandleFunc("/dynamic-pricing-api/1.0/health", controller.HealthController)
 
 	// Starting server on given port number
 	log.Fatal( http.ListenAndServe(":" + config.Server_port, router) ) // Start the server at listening port

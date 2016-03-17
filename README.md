@@ -11,7 +11,7 @@ Compiled with runtime with:
 
 
 ## TODO list
-+ export status and version to /info and /health
+
 + handle panic errors and recover
 + add endpoint /summaries
 + Link oauth to the server oauth trough eureka register
@@ -51,3 +51,4 @@ Compiled with runtime with:
 + eureka details from config
 + log requested url + origin ip address
 + Añadir identificador único a las transacciones (traceID)
++ export status and version to /info and /health like onebox microservices
