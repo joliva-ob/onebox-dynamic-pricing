@@ -11,13 +11,13 @@ Compiled with runtime with:
 
 Build Docker image with
 + cp /source_cfg_files/*env* .
-+ docker build -f docker/Dockerfile .
++ docker build -f docker/Dockerfile . -tag dynamic-pricing
 + docker run --publish 8000:8000 --name dynamic-pricing --rm dynamic-pricing --restart=always dynamic-pricing
 
 
 
 ## TODO list
-+ handle panic errors and recover
++ handle panic errors and recover it
 + add endpoint /summaries
 + Link oauth to the server oauth trough eureka register
 + dockerizar un contenedor con la aplicación

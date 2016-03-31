@@ -6,6 +6,7 @@ import (
 	"os"
 	"fmt"
 
+
 	"github.com/op/go-logging"
 	"github.com/gorilla/mux"
 	"github.com/hudl/fargo"
@@ -81,13 +82,16 @@ func registerToEureka( configFile string )  {
 	hostname, _ := os.Hostname()
 	i := fargo.Instance{
 		HostName:         hostname,
-		Port:             config.Eureka_port,
+		Port:             8000,
 		App:              config.Eureka_app_name,
-		IPAddr:           config.Eureka_ip_addr,
-		VipAddress:       config.Eureka_ip_addr,
-		DataCenterInfo:   fargo.DataCenterInfo{Name: fargo.MyOwn},
+		IPAddr:           hostname,
+		VipAddress:       config.Eureka_app_name,
+		DataCenterInfo:   fargo.DataCenterInfo{Name: fargo.Amazon},
 		SecureVipAddress: config.Eureka_ip_addr,
 		Status:           fargo.UP,
+		HealthCheckUrl:	  "http://" +hostname+ ":" +config.Server_port+ "/dynamic-pricing-api/1.0/health",
+		StatusPageUrl:	  "http://" +hostname+ ":" +config.Server_port+ "/dynamic-pricing-api/1.0/health",
+		HomePageUrl:      "http://" +hostname+ ":" +config.Server_port+ "/dynamic-pricing-api/1.0/health",
 	}
 	err := eurekaConn.RegisterInstance(&i)
 	if err != nil {
