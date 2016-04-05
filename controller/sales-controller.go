@@ -50,6 +50,7 @@ type ProductResponseType struct {
 	VenueName string `json:"venue_name"`
 	PriceId int `json:"price_id"`
 	PriceZoneId int `json:"price_zone_id"`
+	PriceZoneName string `json:"price_zone_name"`
 	Price float32 `json:"price"`
 	Section string `json:"section"`
 	Seat string `json:"seat"`
@@ -173,6 +174,7 @@ func transformProductsDbToProductsResponse( productsDb []*dataservice.ProductElk
 		product.VenueName = session.Venue_name
 		product.PriceId = productsDb[i].TicketData.PriceZoneId
 		product.PriceZoneId = productsDb[i].TicketData.PriceZoneId
+		product.PriceZoneName = productsDb[i].TicketData.PriceZoneName
 		product.Price = session.Price
 		product.Section = productsDb[i].TicketData.SectorName
 		product.Seat = productsDb[i].TicketData.NumSeat

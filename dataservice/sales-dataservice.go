@@ -53,6 +53,7 @@ type ProductElkType struct {
 type TicketDataElkType struct {
 
 	PriceZoneId int `json:"priceZoneId"`
+	PriceZoneName string `json:"priceZoneName"`
 	SectorName string `json:"sectorName"`
 	RowOrder int `json:"rowOrder"`
 	NumSeat string `json:"numSeat"`

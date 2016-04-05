@@ -59,3 +59,4 @@ Build Docker image with
 + log requested url + origin ip address
 + Añadir identificador único a las transacciones (traceID)
 + export status and version to /info and /health like onebox microservices
++ added price_zone_name to any product from sales
