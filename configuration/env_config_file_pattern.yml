@@ -15,4 +15,10 @@ elasticsearch_usage:
 elasticsearch_limit_items:
 sales_elk_index:
 sales_elk_filter_eventId:
-sales_elk_filter_dates: 
+sales_elk_filter_dates:
+sales_elk_filter_sale:
+prices_sql:
+prices_sql_filter_price_id:
+prices_sql_filter_event_id:
+prices_sql_filter_event_id_price_id:
+

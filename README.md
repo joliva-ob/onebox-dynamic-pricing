@@ -17,8 +17,16 @@ Build Docker image with
 
 
 ## TODO list
-+ handle panic errors and recover it
++ update documentation and versioning
++ set forced list of events per client authenticated from configuration
+
++ Get environment and general configurations from environment vars
++ Handle requests by gorutines pool and control them by channels
++ unit testing
 + add endpoint /summaries
++ Get environment and general configurations from environment vars
++ Handle requests by gorutines pool and control them by channels
++ handle panic errors and recover it
 + Link oauth to the server oauth trough eureka register
 + dockerizar un contenedor con la aplicación
 
@@ -31,13 +39,11 @@ Build Docker image with
 + Track and audit to monitoring api console
 + add unit tests and mocks
 + add log level as a main app argument
-+ filter by price_id (priceZoneId)
-+ filter by sale_id
-+ filter by event_id
-
 
 
 ## DONE list
+
+# v0.0.1
 + initial version from db to json server endpoint
 + rehuse mysql sql.DB connections pool
 + load configurations from external file
@@ -60,3 +66,9 @@ Build Docker image with
 + Añadir identificador único a las transacciones (traceID)
 + export status and version to /info and /health like onebox microservices
 + added price_zone_name to any product from sales
+
+# v1.0.0
++ sql query + event_id
++ elk query + sale_id (doc.code)
++ get the params event_id and sale_id
++ set query and calls

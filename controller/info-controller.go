@@ -14,6 +14,7 @@ import (
 type InfoResponseType struct {
 
 	Version string `json:"version"`
+	Description string `json:"description"`
 }
 
 
@@ -29,7 +30,8 @@ func InfoController(w http.ResponseWriter, request *http.Request) {
 
 	// Set json response struct
 	var inforesponse InfoResponseType
-	inforesponse.Version = "0.0.2"
+	inforesponse.Version = "1.0.0"
+	inforesponse.Description = "Filters by event_id and force events filter by user"
 	// TODO fill the version, release and git branch
 	infojson, _ := json.Marshal(inforesponse)
 

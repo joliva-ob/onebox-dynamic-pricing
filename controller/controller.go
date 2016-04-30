@@ -19,7 +19,7 @@ const (
 	EVENT_ID = "event_id"
 	TRANSACTION_SALE_TYPE = "SALE"
 	PRICE_ID = "price_id"
-	SALE_ID = "sale_id"
+	SALE_ID = "sale_id" // OB order code
 	STATUS_UP = "UP"
 	STATUS_DOWN = "DOWN"
 )
@@ -31,6 +31,7 @@ type ParametersResponseType struct {
 	StartDate string `json:"start_date"`
 	EndDate string `json:"end_date"`
 	EventId int `json:event_id`
+	SaleId string `json:"sale_id"`
 	Page int `json:"page"`
 	TraceId string `json:"trace_id"`
 }

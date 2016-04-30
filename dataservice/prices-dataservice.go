@@ -3,7 +3,6 @@ package dataservice
 import (
 
 	"database/sql"
-	"time"
 	"strconv"
 
 	"github.com/patrickmn/go-cache"
@@ -41,12 +40,11 @@ type PriceType struct{
  *
  * http://go-database-sql.org/accessing.html
  */
-func GetPrices(date_from string, date_to string, page int, config configuration.Config, priceId int, uuid string) []*PriceType {
+func GetPrices(date_from string, date_to string, page int, config configuration.Config, priceId int, eventId int, uuid string) []*PriceType {
 
 	var prices []*PriceType
-	start := time.Now()
 	offset := config.Mysql_limit_items * page
-	key := date_from + date_to + strconv.Itoa(config.Mysql_limit_items) + strconv.Itoa(offset) + strconv.Itoa(priceId)
+	key := date_from + date_to + strconv.Itoa(config.Mysql_limit_items) + strconv.Itoa(offset) + strconv.Itoa(priceId) + strconv.Itoa(eventId)
 	var rows *sql.Rows
 	var err error
 
@@ -55,19 +53,32 @@ func GetPrices(date_from string, date_to string, page int, config configuration.
 	if !found {
 
 		// Retrieve from DB
-		if priceId != -1 && priceId > 0 {
+		if priceId != -1 && priceId > 0 && eventId != -1 && eventId > 0 {
+
+			// Filter by PriceId and EventId
+			rows, err = db.Query(config.Prices_sql_filter_event_id_price_id, eventId, priceId, config.Mysql_limit_items, offset);
+
+		} else if priceId != -1 && priceId > 0 {
 
 			// Filter by PriceId
 			rows, err = db.Query(config.Prices_sql_filter_price_id, priceId, config.Mysql_limit_items, offset);
+
+		} else if eventId != -1 && eventId > 0 {
+
+			// Filter by EventId
+			rows, err = db.Query(config.Prices_sql_filter_event_id, eventId, config.Mysql_limit_items, offset);
+
 		} else {
 
 			// Filter by dates
 			rows, err = db.Query(config.Prices_sql, date_from, date_to, config.Mysql_limit_items, offset);
+
 		}
 		if err != nil {
 			log.Fatal(err)
 		}
 		defer rows.Close()
+
 
 		// Read all values from resultset and map it to vector of Pricetype struct
 		for rows.Next() {
@@ -82,9 +93,6 @@ func GetPrices(date_from string, date_to string, page int, config configuration.
 		err = rows.Err()
 		if err != nil {
 			log.Fatal(err)
-		} else {
-			elapsed := time.Since(start)
-			log.Debugf("{%v} %v price rows retrieved in %v", len(prices), elapsed)
 		}
 
 		// Store the prices struct to cache for 5 minutes as default

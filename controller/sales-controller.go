@@ -95,7 +95,7 @@ func SalesController(w http.ResponseWriter, request *http.Request) {
 
 
 	// Retrieve requested resource information
-	dbSales := dataservice.GetSales(startDate, endDate, eventId, page, saleId, uuid)
+	dbSales := dataservice.GetSales(startDate, endDate, eventId, saleId, page, uuid)
 
 
 	// Set json response struct
@@ -104,6 +104,7 @@ func SalesController(w http.ResponseWriter, request *http.Request) {
 	params.EndDate = endDate
 	params.Page = page
 	params.EventId = eventId
+	params.SaleId = saleId
 	params.TraceId = uuid
 	var salesresponse SalesResponseType
 	salesresponse.Parameters = params
@@ -132,7 +133,7 @@ func transformDbSalesToSalesResponse( ordersDb []*dataservice.OrderDocElkType ) 
 
 	var sales []*SaleResponseType
 
-	for i:=0; i<len(ordersDb)-1; i++ {
+	for i:=0; i<len(ordersDb); i++ {
 
 		// Get the cached config details
 		session := dataservice.GetSession( ordersDb[i].Doc.Products[0].SessionId, configuration.GetConfig() )

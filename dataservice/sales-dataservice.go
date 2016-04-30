@@ -67,7 +67,7 @@ type TicketDataElkType struct {
  *
  * http://go-database-sql.org/accessing.html
  */
-func GetSales(dateFrom string, dateTo string, eventId int, page int, saleId string, uuid string) []*OrderDocElkType {
+func GetSales(dateFrom string, dateTo string, eventId int, saleId string, page int, uuid string) []*OrderDocElkType {
 
 	var sales []*OrderDocElkType
 	args := make(map[string]interface{})
@@ -75,14 +75,14 @@ func GetSales(dateFrom string, dateTo string, eventId int, page int, saleId stri
 	from := page*config.Elasticsearch_limit_items
 	args["from"] = from
 	offset := config.Mysql_limit_items * page
-	key := dateFrom + dateTo + strconv.Itoa(config.Elasticsearch_limit_items) + strconv.Itoa(offset) + strconv.Itoa(eventId)
+	key := dateFrom + dateTo + strconv.Itoa(config.Elasticsearch_limit_items) + strconv.Itoa(offset) + strconv.Itoa(eventId) + saleId
 
 	// Get the string associated with the key from the cache
 	salesFromCache, found := salesCache.Get(key)
 	if !found {
 
 		// Get the query and fill placeholders properly
-		query := GetQuery(dateFrom, dateTo, eventId)
+		query := GetQuery(dateFrom, dateTo, eventId, saleId)
 
 		// Elasticsearch Search
 		out, err := elk_conn.Search(config.Sales_elk_index, "", args, query)
@@ -113,14 +113,19 @@ func GetSales(dateFrom string, dateTo string, eventId int, page int, saleId stri
 // Get the correct query from configuration
 // depending on the Url params
 // eventId = -1 means there is no event id requested
-func GetQuery(dateFrom string, dateTo string, eventId int)  string {
+func GetQuery(dateFrom string, dateTo string, eventId int, saleId string)  string {
 
 	var query string
 
 	if eventId != -1 && eventId > 0 {
 
 		query = config.Sales_elk_filter_event
-		query = strings.Replace(query,EVENT_ID,strconv.Itoa(eventId),1)
+		query = strings.Replace(query, EVENT_ID, strconv.Itoa(eventId), 1)
+
+	} else if saleId != "" {
+
+		query = config.Sales_elk_filter_sale
+		query = strings.Replace(query, SALE_ID, saleId, 1)
 
 	} else {
 

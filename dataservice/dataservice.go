@@ -17,6 +17,7 @@ import (
 
 const (
 	MYSQL_DRIVER_NAME = "mysql"
+	SALE_ID = "$saleId"
 	EVENT_ID = "$eventId"
 	START_DATE = "$startDate"
 	END_DATE = "$endDate"

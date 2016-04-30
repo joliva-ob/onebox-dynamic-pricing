@@ -19,7 +19,6 @@ var log = logging.MustGetLogger("dynamic-pricing")
 type Config struct {
 
 	Server_port string
-	Prices_sql string
 	Session_sql string
 	Mysql_conn   string
 	Mysql_max_conn int
@@ -36,7 +35,11 @@ type Config struct {
 	Sales_elk_index string
 	Sales_elk_filter_dates string
 	Sales_elk_filter_event string
+	Sales_elk_filter_sale string
+	Prices_sql string
 	Prices_sql_filter_price_id string
+	Prices_sql_filter_event_id string
+	Prices_sql_filter_event_id_price_id string
 	Eureka_port int
 	Eureka_ip_addr string
 	Eureka_app_name string
