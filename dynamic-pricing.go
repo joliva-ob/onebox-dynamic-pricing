@@ -47,7 +47,9 @@ func main() {
 
 	// Create the router to handle requests
 	router := mux.NewRouter().StrictSlash(true)
+	router.HandleFunc("/dynamic-pricing-api/1.0/prices/{id}", controller.PricesController) // Prices endpoint
 	router.HandleFunc("/dynamic-pricing-api/1.0/prices", controller.PricesController) // Prices endpoint
+	router.HandleFunc("/dynamic-pricing-api/1.0/sales/{id}", controller.SalesController) // Sales endpoint
 	router.HandleFunc("/dynamic-pricing-api/1.0/sales", controller.SalesController) // Sales endpoint
 	router.HandleFunc("/dynamic-pricing-api/1.0/info", controller.InfoController)
 	router.HandleFunc("/dynamic-pricing-api/1.0/health", controller.HealthController)

@@ -53,17 +53,17 @@ func GetPrices(date_from string, date_to string, page int, config configuration.
 	if !found {
 
 		// Retrieve from DB
-		if priceId != -1 && priceId > 0 && eventId != -1 && eventId > 0 {
+		if priceId > 0 && eventId > 0 {
 
 			// Filter by PriceId and EventId
 			rows, err = db.Query(config.Prices_sql_filter_event_id_price_id, eventId, priceId, config.Mysql_limit_items, offset);
 
-		} else if priceId != -1 && priceId > 0 {
+		} else if priceId > 0 {
 
 			// Filter by PriceId
 			rows, err = db.Query(config.Prices_sql_filter_price_id, priceId, config.Mysql_limit_items, offset);
 
-		} else if eventId != -1 && eventId > 0 {
+		} else if eventId > 0 {
 
 			// Filter by EventId
 			rows, err = db.Query(config.Prices_sql_filter_event_id, eventId, config.Mysql_limit_items, offset);

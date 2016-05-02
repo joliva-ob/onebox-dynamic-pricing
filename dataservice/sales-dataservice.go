@@ -117,7 +117,7 @@ func GetQuery(dateFrom string, dateTo string, eventId int, saleId string)  strin
 
 	var query string
 
-	if eventId != -1 && eventId > 0 {
+	if eventId > 0 {
 
 		query = config.Sales_elk_filter_event
 		query = strings.Replace(query, EVENT_ID, strconv.Itoa(eventId), 1)

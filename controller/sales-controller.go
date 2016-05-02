@@ -11,6 +11,7 @@ import (
 	"github.com/joliva-ob/onebox-dynamic-pricing/dataservice"
 	"github.com/joliva-ob/onebox-dynamic-pricing/authorization"
 	"github.com/joliva-ob/onebox-dynamic-pricing/configuration"
+	"github.com/gorilla/mux"
 )
 
 
@@ -75,6 +76,13 @@ func SalesController(w http.ResponseWriter, request *http.Request) {
 	}
 
 	// GET request params
+	saleId := request.URL.Query().Get(SALE_ID) // Empty error if error
+	if saleId == "" {
+
+		vars := mux.Vars(request) // Empty error if error
+		saleId = vars[ID]
+
+	}
 	startDate = request.URL.Query().Get(START_DATE)
 	if startDate ==  "" {
 		startDate = time.Now().AddDate(0, -1, 0).Format(DATE_FORMAT_SHORT)
@@ -87,11 +95,7 @@ func SalesController(w http.ResponseWriter, request *http.Request) {
 	if err != nil {
 		page = 0
 	}
-	eventId, err = strconv.Atoi(request.URL.Query().Get(EVENT_ID))
-	if err != nil {
-		eventId = -1
-	}
-	saleId = request.URL.Query().Get(SALE_ID)
+	eventId, err = strconv.Atoi(request.URL.Query().Get(EVENT_ID)) // Return 0 if error
 
 
 	// Retrieve requested resource information

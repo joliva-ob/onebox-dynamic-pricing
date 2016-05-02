@@ -21,6 +21,7 @@ Build Docker image with
 + set forced list of events per client authenticated from configuration
 
 + Get environment and general configurations from environment vars
++ Versioning policy
 + Handle requests by gorutines pool and control them by channels
 + unit testing
 + add endpoint /summaries
@@ -72,3 +73,4 @@ Build Docker image with
 + elk query + sale_id (doc.code)
 + get the params event_id and sale_id
 + set query and calls
++ api change event_id for id and sale_id for id

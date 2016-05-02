@@ -19,6 +19,7 @@ const (
 	EVENT_ID = "event_id"
 	TRANSACTION_SALE_TYPE = "SALE"
 	PRICE_ID = "price_id"
+	ID = "id"
 	SALE_ID = "sale_id" // OB order code
 	STATUS_UP = "UP"
 	STATUS_DOWN = "DOWN"

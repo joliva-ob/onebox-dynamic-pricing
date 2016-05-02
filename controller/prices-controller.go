@@ -11,6 +11,8 @@ import (
 	"github.com/joliva-ob/onebox-dynamic-pricing/dataservice"
 	"github.com/joliva-ob/onebox-dynamic-pricing/authorization"
 	"github.com/joliva-ob/onebox-dynamic-pricing/configuration"
+
+	"github.com/gorilla/mux"
 )
 
 
@@ -42,6 +44,18 @@ func PricesController(w http.ResponseWriter, request *http.Request) {
 	}
 
 	// GET request params
+	priceId, err := strconv.Atoi(request.URL.Query().Get(PRICE_ID)) // Return 0 if error
+	if err != nil {
+
+		vars := mux.Vars(request)
+		id := vars[ID]
+		if id != "" {
+			priceId, err = strconv.Atoi(id) // Return 0 if error
+			if err != nil {
+				priceId = 0
+			}
+		}
+	}
 	startDate = request.URL.Query().Get(START_DATE)
 	if startDate ==  "" {
 		startDate = time.Now().AddDate(0, -1, 0).Format(DATE_FORMAT_SHORT)
@@ -54,14 +68,7 @@ func PricesController(w http.ResponseWriter, request *http.Request) {
 	if err != nil {
 		page = 0
 	}
-	priceId, err = strconv.Atoi(request.URL.Query().Get(PRICE_ID))
-	if err != nil {
-		priceId = -1
-	}
-	eventId, err = strconv.Atoi(request.URL.Query().Get(EVENT_ID))
-	if err != nil {
-		eventId = -1
-	}
+	eventId, err = strconv.Atoi(request.URL.Query().Get(EVENT_ID)) // Return 0 if error
 
 
 	// Retrieve requested resource information
