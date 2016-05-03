@@ -67,7 +67,7 @@ type TicketDataElkType struct {
  *
  * http://go-database-sql.org/accessing.html
  */
-func GetSales(dateFrom string, dateTo string, eventId int, saleId string, page int, uuid string) []*OrderDocElkType {
+func GetSales(dateFrom string, dateTo string, eventId int, saleId string, page int, uuid string, oauthtoken *Oauthtoken) []*OrderDocElkType {
 
 	var sales []*OrderDocElkType
 	args := make(map[string]interface{})
@@ -98,6 +98,9 @@ func GetSales(dateFrom string, dateTo string, eventId int, saleId string, page i
 		if err != nil {
 			log.Errorf("{%v} Error occurred while trying to retrieve elasticsearch sales: %v", uuid, err)
 		}
+
+		// Store the prices struct to cache
+		salesCache.Set(key, sales, 0)
 
 	} else {
 

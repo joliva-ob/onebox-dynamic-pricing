@@ -5,7 +5,6 @@ import (
 	"database/sql"
 	"strconv"
 
-	"github.com/patrickmn/go-cache"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/joliva-ob/onebox-dynamic-pricing/configuration"
 )
@@ -40,7 +39,7 @@ type PriceType struct{
  *
  * http://go-database-sql.org/accessing.html
  */
-func GetPrices(date_from string, date_to string, page int, config configuration.Config, priceId int, eventId int, uuid string) []*PriceType {
+func GetPrices(date_from string, date_to string, page int, config configuration.Config, priceId int, eventId int, uuid string, oauthtoken *Oauthtoken) []*PriceType {
 
 	var prices []*PriceType
 	offset := config.Mysql_limit_items * page
@@ -75,7 +74,7 @@ func GetPrices(date_from string, date_to string, page int, config configuration.
 
 		}
 		if err != nil {
-			log.Fatal(err)
+			log.Error(err)
 		}
 		defer rows.Close()
 
@@ -86,17 +85,17 @@ func GetPrices(date_from string, date_to string, page int, config configuration.
 			p := new(PriceType)
 			err := rows.Scan(&p.Id, &p.Price, &p.Price_zone_name, &p.Event_id, &p.Event_name, &p.Event_date, &p.Session_id, &p.Session_date, &p.Venue_id, &p.Venue_name, &p.Buyer_type_code, &p.Fee, &p.Tax, &p.External_price_id)
 			if err != nil {
-				log.Fatal(err)
+				log.Error(err)
 			}
 			prices = append(prices, p)
 		}
 		err = rows.Err()
 		if err != nil {
-			log.Fatal(err)
+			log.Error(err)
 		}
 
-		// Store the prices struct to cache for 5 minutes as default
-		pricesCache.Set(key, prices, cache.DefaultExpiration)
+		// Store the prices struct to cache
+		pricesCache.Set(key, prices, 0)
 
 	} else {
 

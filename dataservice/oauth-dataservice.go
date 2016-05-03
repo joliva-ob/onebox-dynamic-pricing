@@ -10,16 +10,29 @@ type Oauthtoken struct {
 
 func GetOauthtoken( token string ) *Oauthtoken  {
 
-	var oauthtoken Oauthtoken
-	log.Debugf("cbBucket is %v: ", cbBucket)
-	if cbBucket != nil {
+	oauthtoken := new(Oauthtoken)
+
+	// Get the string associated with the key from the cache
+	oauthtokenFromCache, found := oauthCache.Get(token)
+	if !found {
+
+//		log.Debugf("oauthtoken not found %v ", token)
 		err := cbBucket.Get(token, &oauthtoken)
 		if err != nil {
-			log.Fatalf("Failed to get data from the couchbase cluster (%s)\n", err)
+			log.Errorf("Failed to get data from the couchbase cluster (%s)\n", err)
 		}
+
+		// Store the prices struct to cache
+		oauthCache.Set(token, oauthtoken, 0)
+
+	} else {
+
+		// Retrieve prices struct from cache
+//		log.Debugf("oauthtoken found %v", token)
+		oauthtoken = oauthtokenFromCache.(*Oauthtoken) // Cast interface{} retrieved from cache to []*PriceType
 	}
 
-	return &oauthtoken
+	return oauthtoken
 }
 
 

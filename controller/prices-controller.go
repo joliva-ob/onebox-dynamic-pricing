@@ -37,7 +37,8 @@ func PricesController(w http.ResponseWriter, request *http.Request) {
 	start := time.Now()
 
 	// Check authorization
-	if !authorization.Authorize( request.Header.Get("Authorization") ) {
+	oauthtoken := authorization.Authorize( request.Header.Get(AUTH_HEADER) )
+	if oauthtoken.Token == "" {
 		w.WriteHeader(http.StatusUnauthorized)
 		log.Warningf("/prices error status 401 unauthorized.")
 		return
@@ -72,7 +73,7 @@ func PricesController(w http.ResponseWriter, request *http.Request) {
 
 
 	// Retrieve requested resource information
-	prices := dataservice.GetPrices(startDate, endDate, page, configuration.GetConfig(), priceId, eventId, uuid)
+	prices := dataservice.GetPrices(startDate, endDate, page, configuration.GetConfig(), priceId, eventId, uuid, oauthtoken)
 
 
 	// Set json response struct

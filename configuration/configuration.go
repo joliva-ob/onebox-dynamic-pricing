@@ -28,6 +28,7 @@ type Config struct {
 	Cache_prices_expiration_in_sec int
 	Cache_sessions_expiration_in_sec int
 	Cache_sales_expiration_in_sec int
+	Cache_oauth_expiration_in_sec int
 	Elasticsearch_name string
 	Elasticsearch_value string
 	Elasticsearch_usage string

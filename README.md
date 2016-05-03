@@ -17,7 +17,6 @@ Build Docker image with
 
 
 ## TODO list
-+ update documentation and versioning
 + set forced list of events per client authenticated from configuration
 + filter forced events list per oauth client
 
@@ -29,7 +28,6 @@ Build Docker image with
 + Get environment and general configurations from environment vars
 + Handle requests by gorutines pool and control them by channels
 + handle panic errors and recover it
-+ Link oauth to the server oauth trough eureka register
 + dockerizar un contenedor con la aplicación
 
 
@@ -75,3 +73,5 @@ Build Docker image with
 + get the params event_id and sale_id
 + set query and calls
 + api change event_id for id and sale_id for id
++ update documentation and versioning
++ authorize via oauth server and cache it

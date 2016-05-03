@@ -9,6 +9,7 @@ log_format:
 cache_prices_expiration_in_sec:
 cache_sessions_expiration_in_sec:
 cache_sales_expiration_in_sec:
+cache_oauth_expiration_in_sec:
 elasticsearch_name:
 elasticsearch_value:
 elasticsearch_usage:

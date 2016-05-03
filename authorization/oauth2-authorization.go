@@ -5,36 +5,24 @@ import (
 
 	"strings"
 
-	"github.com/joliva-ob/onebox-dynamic-pricing/configuration"
 	"github.com/joliva-ob/onebox-dynamic-pricing/dataservice"
 
-	"github.com/op/go-logging"
 )
 
-var log *logging.Logger = configuration.GetLog()
+
+
 
 // Public method to check the Oauth2 authorization with
 // a Bearer token header to the oauth server
-func Authorize (authheader string) bool {
+func Authorize (authheader string) *dataservice.Oauthtoken {
 
+	var oauthtoken *dataservice.Oauthtoken
 	s := strings.Split(authheader, " ")
 	token := s[len(s)-1]
 
 	if token != "" {
-		oauthtoken := dataservice.GetOauthtoken( token )
-		log.Debugf("oauthtoken username = '%v'", oauthtoken.UserName)
-	//	if oauthtoken != nil {
-			return true
-	//	}
+		oauthtoken = dataservice.GetOauthtoken( token )
 	}
 
-
-
-
-//	if authheader == "Bearer 1736cc7f-7c60-4576-b851-b7b3630cfeab" {
-//		return true
-//	}
-
-	return false
-
+	return oauthtoken
 }

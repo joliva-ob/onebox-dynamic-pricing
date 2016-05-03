@@ -69,9 +69,10 @@ func SalesController(w http.ResponseWriter, request *http.Request) {
 	start := time.Now()
 
 	// Check authorization
-	if !authorization.Authorize( request.Header.Get("Authorization") ) {
+	oauthtoken := authorization.Authorize( request.Header.Get(AUTH_HEADER) )
+	if oauthtoken.Token == "" {
 		w.WriteHeader(http.StatusUnauthorized)
-		log.Warningf("/sales error status 401 unauthorized.")
+		log.Warningf("/prices error status 401 unauthorized.")
 		return
 	}
 
@@ -99,7 +100,7 @@ func SalesController(w http.ResponseWriter, request *http.Request) {
 
 
 	// Retrieve requested resource information
-	dbSales := dataservice.GetSales(startDate, endDate, eventId, saleId, page, uuid)
+	dbSales := dataservice.GetSales(startDate, endDate, eventId, saleId, page, uuid, oauthtoken)
 
 
 	// Set json response struct

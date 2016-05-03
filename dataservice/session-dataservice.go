@@ -6,7 +6,6 @@ import (
 //	"time"
 	"strconv"
 
-	"github.com/patrickmn/go-cache"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/joliva-ob/onebox-dynamic-pricing/configuration"
 )
@@ -62,14 +61,11 @@ func GetSession(sessionId int, config configuration.Config) *SessionType {
 		}
 		err = rows.Err()
 		if err != nil {
-			log.Fatal(err)
-		} else {
-//			elapsed := time.Since(start)
-//			log.Debugf("%v id session retrieved in %v", session.Session_id, elapsed)
+			log.Error(err)
 		}
 
-		// Store the prices struct to cache for 5 minutes as default
-		sessionsCache.Set(key, session, cache.DefaultExpiration)
+		// Store the prices struct to cache
+		sessionsCache.Set(key, session, 0)
 
 	} else {
 
