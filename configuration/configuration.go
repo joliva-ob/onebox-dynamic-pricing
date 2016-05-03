@@ -43,6 +43,9 @@ type Config struct {
 	Eureka_port int
 	Eureka_ip_addr string
 	Eureka_app_name string
+	Couchbase_url string
+	Couchbase_bucket string
+	Couchbase_pool string
 }
 
 

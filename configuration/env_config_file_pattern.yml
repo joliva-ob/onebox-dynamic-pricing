@@ -21,4 +21,7 @@ prices_sql:
 prices_sql_filter_price_id:
 prices_sql_filter_event_id:
 prices_sql_filter_event_id_price_id:
+couchbase_url:
+couchbase_bucket:
+couchbase_pool:
 

@@ -19,6 +19,7 @@ Build Docker image with
 ## TODO list
 + update documentation and versioning
 + set forced list of events per client authenticated from configuration
++ filter forced events list per oauth client
 
 + Get environment and general configurations from environment vars
 + Versioning policy

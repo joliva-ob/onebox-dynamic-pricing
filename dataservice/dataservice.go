@@ -12,6 +12,8 @@ import (
 	"github.com/joliva-ob/onebox-dynamic-pricing/configuration"
 	"github.com/op/go-logging"
 	"github.com/mattbaird/elastigo/lib"
+	"github.com/couchbaselabs/go-couchbase"
+
 )
 
 
@@ -34,6 +36,7 @@ var (
 	sessionsCache *cache.Cache
 	salesCache *cache.Cache
 	elk_conn *elastigo.Conn
+	cbBucket *couchbase.Bucket
 	config configuration.Config
 )
 
@@ -53,6 +56,7 @@ func Initialize( c configuration.Config ){
 		db, _ = sql.Open(MYSQL_DRIVER_NAME, config.Mysql_conn)
 		log.Infof("DB dataservice initialized to: %v with a max pool of: %v", config.Mysql_conn, config.Mysql_max_conn)
 
+
 		// Open elasticsearch connection
 		elk_host := flag.String(config.Elasticsearch_name, config.Elasticsearch_value, config.Elasticsearch_usage)
 		elk_conn = elastigo.NewConn()
@@ -60,6 +64,23 @@ func Initialize( c configuration.Config ){
 		elk_conn.Domain = *elk_host
 		log.Infof("Elasticsearch connected to host: %v", config.Elasticsearch_value)
 
+
+		// Open couchbase connection
+		connection, err := couchbase.Connect(config.Couchbase_url)
+		if err != nil {
+			log.Fatalf("Failed to connect to couchbase (%s)\n", err)
+		}
+		pool, err := connection.GetPool(config.Couchbase_pool)
+		if err != nil {
+			log.Fatalf("Failed to get pool from couchbase (%s)\n", err)
+		}
+		cbBucket, err = pool.GetBucket(config.Couchbase_bucket)
+		if err != nil {
+			log.Fatalf("Failed to get bucket from couchbase (%s)\n", err)
+		}
+		log.Infof("Couchbase connected to host: %v and bucket: %v", config.Couchbase_url, config.Couchbase_bucket)
+
+		
 		// Create a cache with a default expiration time of N seconds, and which
 		// purges expired items every 30 seconds
 		pricesCache = cache.New( time.Duration(config.Cache_prices_expiration_in_sec*1000*1000*1000), 30*time.Second ) // Duration constructor needs nanoseconds
