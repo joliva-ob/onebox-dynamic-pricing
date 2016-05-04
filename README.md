@@ -20,15 +20,15 @@ Build Docker image with
 + set forced list of events per client authenticated from configuration
 + filter forced events list per oauth client
 
++ Monitorize API
 + Get environment and general configurations from environment vars
 + Versioning policy
 + Handle requests by gorutines pool and control them by channels
 + unit testing
 + add endpoint /summaries
-+ Get environment and general configurations from environment vars
-+ Handle requests by gorutines pool and control them by channels
++ Perfomance: Handle requests by gorutines pool and control them by channels (Marcio.io)
 + handle panic errors and recover it
-+ dockerizar un contenedor con la aplicación
++ dockerize app
 
 
 ## Optional TODO list

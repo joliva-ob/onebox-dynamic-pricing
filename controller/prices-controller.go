@@ -33,16 +33,17 @@ type PricesResponseType struct {
 func PricesController(w http.ResponseWriter, request *http.Request) {
 
 	uuid := GetUuid()
-	log.Infof( "{%v} /prices request %v received from: %v", uuid, request.URL, getIP(w, request) )
 	start := time.Now()
 
 	// Check authorization
 	oauthtoken := authorization.Authorize( request.Header.Get(AUTH_HEADER) )
 	if oauthtoken.Token == "" {
 		w.WriteHeader(http.StatusUnauthorized)
-		log.Warningf("/prices error status 401 unauthorized.")
+		log.Warningf("/prices request error status 401 unauthorized %v", getIP(w, request))
 		return
 	}
+	log.Infof( "{%v} /prices request %v received from: %v %v", uuid, request.URL, oauthtoken.UserName, getIP(w, request) )
+
 
 	// GET request params
 	priceId, err := strconv.Atoi(request.URL.Query().Get(PRICE_ID)) // Return 0 if error

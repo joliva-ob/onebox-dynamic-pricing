@@ -65,16 +65,17 @@ type ProductResponseType struct {
 func SalesController(w http.ResponseWriter, request *http.Request) {
 
 	uuid := GetUuid()
-	log.Infof( "{%v} /sales request %v received from: %v", uuid, request.URL, getIP(w, request) )
 	start := time.Now()
 
 	// Check authorization
 	oauthtoken := authorization.Authorize( request.Header.Get(AUTH_HEADER) )
 	if oauthtoken.Token == "" {
 		w.WriteHeader(http.StatusUnauthorized)
-		log.Warningf("/prices error status 401 unauthorized.")
+		log.Warningf("/sales request error status 401 unauthorized %v", getIP(w, request))
 		return
 	}
+	log.Infof( "{%v} /sales request %v received from: %v %v", uuid, request.URL, oauthtoken.UserName, getIP(w, request) )
+
 
 	// GET request params
 	saleId := request.URL.Query().Get(SALE_ID) // Empty error if error

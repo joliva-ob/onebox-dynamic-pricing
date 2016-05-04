@@ -4,3 +4,4 @@ dynamic-pricing.linux
 dynamic-pricing.exe
 *.yml
 *.gcfg
+.idea
