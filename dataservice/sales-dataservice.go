@@ -75,14 +75,15 @@ func GetSales(dateFrom string, dateTo string, eventId int, saleId string, page i
 	from := page*config.Elasticsearch_limit_items
 	args["from"] = from
 	offset := config.Mysql_limit_items * page
-	key := dateFrom + dateTo + strconv.Itoa(config.Elasticsearch_limit_items) + strconv.Itoa(offset) + strconv.Itoa(eventId) + saleId
+	saleId = strings.ToLower(saleId)
+	key := dateFrom + dateTo + strconv.Itoa(config.Elasticsearch_limit_items) + strconv.Itoa(offset) + strconv.Itoa(eventId) + saleId + oauthtoken.UserName
 
 	// Get the string associated with the key from the cache
 	salesFromCache, found := salesCache.Get(key)
 	if !found {
 
 		// Get the query and fill placeholders properly
-		query := GetQuery(dateFrom, dateTo, eventId, saleId)
+		query := GetQuery(dateFrom, dateTo, eventId, saleId, oauthtoken.UserName)
 
 		// Elasticsearch Search
 		out, err := elk_conn.Search(config.Sales_elk_index, "", args, query)
@@ -113,26 +114,41 @@ func GetSales(dateFrom string, dateTo string, eventId int, saleId string, page i
 
 
 
-// Get the correct query from configuration
-// depending on the Url params
-// eventId = -1 means there is no event id requested
-func GetQuery(dateFrom string, dateTo string, eventId int, saleId string)  string {
+/*
+ Get the correct query from configuration
+ depending on the Url params
+ eventId = -1 means there is no event id requested
+  */
+func GetQuery(dateFrom string, dateTo string, eventId int, saleId string, username string)  string {
 
 	var query string
+	_, restrictions := GetRestrictions( username, false )
 
 	if eventId > 0 {
 
-		query = config.Sales_elk_filter_event
-		query = strings.Replace(query, EVENT_ID, strconv.Itoa(eventId), 1)
+		if restrictions {
+			query = config.Sales_elk_filter_event_restricted
+		} else {
+			query = config.Sales_elk_filter_event
+			query = strings.Replace(query, EVENT_ID, strconv.Itoa(eventId), 1)
+		}
 
 	} else if saleId != "" {
 
-		query = config.Sales_elk_filter_sale
+		if restrictions {
+			query = config.Sales_elk_filter_sale_restricted
+		} else {
+			query = config.Sales_elk_filter_sale
+		}
 		query = strings.Replace(query, SALE_ID, saleId, 1)
 
 	} else {
 
-		query = config.Sales_elk_filter_dates
+		if restrictions {
+			query = config.Sales_elk_filter_dates_restricted
+		} else {
+			query = config.Sales_elk_filter_dates
+		}
 		query = strings.Replace(query,START_DATE,dateFrom,1)
 		query = strings.Replace(query,END_DATE,dateTo,1)
 	}

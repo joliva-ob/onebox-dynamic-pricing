@@ -15,7 +15,8 @@ elasticsearch_value:
 elasticsearch_usage:
 elasticsearch_limit_items:
 sales_elk_index:
-sales_elk_filter_eventId:
+sales_elk_filter_event:
+sales_elk_filter_events:
 sales_elk_filter_dates:
 sales_elk_filter_sale:
 prices_sql:
@@ -23,6 +24,7 @@ prices_sql_filter_price_id:
 prices_sql_filter_event_id:
 prices_sql_filter_event_id_price_id:
 couchbase_url:
-couchbase_bucket:
+couchbase_oauth_bucket:
+couchbase_restrictions_bucket:
 couchbase_pool:
 

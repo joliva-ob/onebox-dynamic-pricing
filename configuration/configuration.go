@@ -35,17 +35,25 @@ type Config struct {
 	Elasticsearch_limit_items int
 	Sales_elk_index string
 	Sales_elk_filter_dates string
+	Sales_elk_filter_dates_restricted string
 	Sales_elk_filter_event string
+	Sales_elk_filter_event_restricted string
 	Sales_elk_filter_sale string
+	Sales_elk_filter_sale_restricted string
 	Prices_sql string
+	Prices_sql_dates_restricted string
 	Prices_sql_filter_price_id string
+	Prices_sql_filter_price_id_restricted string
 	Prices_sql_filter_event_id string
+	Prices_sql_filter_event_id_restricted string
 	Prices_sql_filter_event_id_price_id string
+	Prices_sql_filter_event_id_price_id_restricted string
 	Eureka_port int
 	Eureka_ip_addr string
 	Eureka_app_name string
 	Couchbase_url string
-	Couchbase_bucket string
+	Couchbase_oauth_bucket string
+	Couchbase_restrictions_bucket string
 	Couchbase_pool string
 }
 

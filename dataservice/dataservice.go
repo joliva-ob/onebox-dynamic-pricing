@@ -36,14 +36,18 @@ var (
 	sessionsCache *cache.Cache
 	salesCache *cache.Cache
 	oauthCache *cache.Cache
+	restrictionsCache *cache.Cache
 	elk_conn *elastigo.Conn
-	cbBucket *couchbase.Bucket
+	cbOauthBucket *couchbase.Bucket
+	cbRestrictionsBucket *couchbase.Bucket
 	config configuration.Config
 )
 
 
 
-// Initialize pool database and set properties from config
+/**
+  * Initialize pool database and set properties from config
+  */
 func Initialize( c configuration.Config ){
 
 	// Set configuration
@@ -73,11 +77,13 @@ func Initialize( c configuration.Config ){
 		// Open couchbase connection
 		connection, err := couchbase.Connect(config.Couchbase_url)
 		pool, err := connection.GetPool(config.Couchbase_pool)
-		cbBucket, err = pool.GetBucket(config.Couchbase_bucket)
+		cbOauthBucket, err = pool.GetBucket(config.Couchbase_oauth_bucket)
+		cbRestrictionsBucket, err = pool.GetBucket(config.Couchbase_restrictions_bucket)
 		if err != nil {
 			log.Fatalf("Failed to get bucket from couchbase (%s)\n", err)
 		} else {
-			log.Infof("Couchbase connected to host: %v and bucket: %v", config.Couchbase_url, config.Couchbase_bucket)
+			log.Infof("Couchbase connected to host: %v and bucket: %v", config.Couchbase_url, config.Couchbase_oauth_bucket)
+			log.Infof("Couchbase connected to host: %v and bucket: %v", config.Couchbase_url, config.Couchbase_restrictions_bucket)
 		}
 
 
@@ -91,9 +97,17 @@ func Initialize( c configuration.Config ){
 		log.Infof("Sales Cache initialized with eviction time: %v sec", config.Cache_sales_expiration_in_sec)
 		oauthCache = cache.New( time.Duration(config.Cache_oauth_expiration_in_sec*1000*1000*1000), 30*time.Second ) // Duration constructor needs nanoseconds
 		log.Infof("Oauth Cache initialized with eviction time: %v sec", config.Cache_oauth_expiration_in_sec)
+		restrictionsCache = cache.New( -1, 30*time.Second ) // No auto expiration
+		log.Infof("Restrictions Cache initialized with eviction time: %v sec", -1)
 
 		isInitialized = true
 
 
 	}
 }
+
+
+
+
+
+

@@ -23,6 +23,8 @@ const (
 	SALE_ID = "sale_id" // OB order code
 	STATUS_UP = "UP"
 	STATUS_DOWN = "DOWN"
+	STATUS_OK = "OK"
+	STATUS_ERROR = "ERROR"
 	AUTH_HEADER = "Authorization"
 )
 

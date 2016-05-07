@@ -17,8 +17,10 @@ Build Docker image with
 
 
 ## TODO list
-+ set forced list of events per client authenticated from configuration
-+ filter forced events list per oauth client
++ apply restrictions from couchbase document
++ tests & documentation
++ dockerize
+
 
 + Monitorize API
 + Get environment and general configurations from environment vars
@@ -75,3 +77,7 @@ Build Docker image with
 + api change event_id for id and sale_id for id
 + update documentation and versioning
 + authorize via oauth server and cache it
++ load restrictions per oauth username
++ filter forced events list per oauth client restrictions
++ filter forced prices list per oauth client restrictions
++ force reload restrictions from endpoint

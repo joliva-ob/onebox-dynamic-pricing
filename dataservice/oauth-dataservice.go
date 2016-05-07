@@ -17,7 +17,7 @@ func GetOauthtoken( token string ) *Oauthtoken  {
 	if !found {
 
 //		log.Debugf("oauthtoken not found %v ", token)
-		err := cbBucket.Get(token, &oauthtoken)
+		err := cbOauthBucket.Get(token, &oauthtoken)
 		if err != nil {
 			log.Errorf("Failed to get data from the couchbase cluster (%s)\n", err)
 		}

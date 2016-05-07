@@ -43,36 +43,17 @@ func GetPrices(date_from string, date_to string, page int, config configuration.
 
 	var prices []*PriceType
 	offset := config.Mysql_limit_items * page
-	key := date_from + date_to + strconv.Itoa(config.Mysql_limit_items) + strconv.Itoa(offset) + strconv.Itoa(priceId) + strconv.Itoa(eventId)
+	key := date_from + date_to + strconv.Itoa(config.Mysql_limit_items) + strconv.Itoa(offset) + strconv.Itoa(priceId) + strconv.Itoa(eventId) + oauthtoken.UserName
 	var rows *sql.Rows
 	var err error
 
 	// Get the string associated with the key from the cache
+	_, restrictions := GetRestrictions( oauthtoken.UserName, false )
 	pricesFromCache, found := pricesCache.Get(key)
 	if !found {
 
 		// Retrieve from DB
-		if priceId > 0 && eventId > 0 {
-
-			// Filter by PriceId and EventId
-			rows, err = db.Query(config.Prices_sql_filter_event_id_price_id, eventId, priceId, config.Mysql_limit_items, offset);
-
-		} else if priceId > 0 {
-
-			// Filter by PriceId
-			rows, err = db.Query(config.Prices_sql_filter_price_id, priceId, config.Mysql_limit_items, offset);
-
-		} else if eventId > 0 {
-
-			// Filter by EventId
-			rows, err = db.Query(config.Prices_sql_filter_event_id, eventId, config.Mysql_limit_items, offset);
-
-		} else {
-
-			// Filter by dates
-			rows, err = db.Query(config.Prices_sql, date_from, date_to, config.Mysql_limit_items, offset);
-
-		}
+		rows, err = GetDataFromDb( eventId, priceId, config.Mysql_limit_items, offset, date_from, date_to, restrictions )
 		if err != nil {
 			log.Error(err)
 		}
@@ -109,3 +90,50 @@ func GetPrices(date_from string, date_to string, page int, config configuration.
 	return prices
 }
 
+
+
+/**
+ Retrieve prices from DB taking into account if an event or price are given
+ or not.
+ */
+func GetDataFromDb( eventId int, priceId int, limit_items int, offset int, date_from string, date_to string, restrictions bool) (*sql.Rows, error) {
+
+	var rows *sql.Rows
+	var err error
+
+	if priceId > 0 && eventId > 0 {
+
+		if restrictions {
+			rows, err = db.Query(config.Prices_sql_filter_event_id_price_id_restricted, priceId, config.Mysql_limit_items, offset);
+		} else {
+			rows, err = db.Query(config.Prices_sql_filter_event_id_price_id, eventId, priceId, config.Mysql_limit_items, offset);
+		}
+
+	} else if priceId > 0 {
+
+		if restrictions {
+			rows, err = db.Query(config.Prices_sql_filter_price_id_restricted, priceId, config.Mysql_limit_items, offset);
+		} else {
+			rows, err = db.Query(config.Prices_sql_filter_price_id, priceId, config.Mysql_limit_items, offset);
+		}
+
+	} else if eventId > 0 {
+
+		if restrictions {
+			rows, err = db.Query(config.Prices_sql_filter_event_id_restricted, config.Mysql_limit_items, offset);
+		} else {
+			rows, err = db.Query(config.Prices_sql_filter_event_id, eventId, config.Mysql_limit_items, offset);
+		}
+
+	} else { // Filter by dates
+
+		if restrictions {
+			rows, err = db.Query(config.Prices_sql_dates_restricted, date_from, date_to, config.Mysql_limit_items, offset);
+		} else {
+			rows, err = db.Query(config.Prices_sql, date_from, date_to, config.Mysql_limit_items, offset);
+		}
+
+	}
+
+	return rows, err
+}

@@ -53,6 +53,7 @@ func main() {
 	router.HandleFunc("/dynamic-pricing-api/1.0/sales", controller.SalesController) // Sales endpoint
 	router.HandleFunc("/dynamic-pricing-api/1.0/info", controller.InfoController)
 	router.HandleFunc("/dynamic-pricing-api/1.0/health", controller.HealthController)
+	router.HandleFunc("/dynamic-pricing-api/1.0/reload-restrictions", controller.ReloadRestrictionsController)
 
 	// Starting server on given port number
 	log.Fatal( http.ListenAndServe(":" + config.Server_port, router) ) // Start the server at listening port
