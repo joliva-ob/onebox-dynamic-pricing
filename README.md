@@ -24,10 +24,9 @@ Build Docker image with
 + docker run --publish 8000:8000 --name dynamic-pricing --rm dynamic-pricing --restart=always dynamic-pricing
 
 
+## TODO must list
++ unit tests
 
-## TODO mandatory list
-+ Get environment and general configurations from environment vars
-+ tests & documentation
 
 ## TODO should list
 + dockerize
@@ -88,3 +87,5 @@ Build Docker image with
 + filter forced prices list per oauth client restrictions
 + force reload restrictions from endpoint
 + only allow a list of users from config
++ Get environment and general configurations from environment vars
++ documentation README.md
