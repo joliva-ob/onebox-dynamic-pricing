@@ -55,6 +55,8 @@ type Config struct {
 	Couchbase_oauth_bucket string
 	Couchbase_restrictions_bucket string
 	Couchbase_pool string
+	Authorized_usernames_list []string
+	Restricted_usernames_list []string
 }
 
 

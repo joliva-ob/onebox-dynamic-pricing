@@ -34,15 +34,15 @@ var eurekaConn fargo.EurekaConnection
 func main() {
 
 	// Load configuration to start application
-	checkParams( os.Args )
-	var filename = os.Args[1] + "/" + os.Args[2] + ".yml"
+	conf_path, env := checkParams( os.Args )
+	var filename = conf_path + "/" + env + ".yml"
 	config = configuration.LoadConfiguration(filename)
 	log = configuration.GetLog()
 	dataservice.Initialize(config)
-	log.Infof("dynamic-pricing started with environment: %s and listening in port: %v\n", os.Args[2], config.Server_port)
+	log.Infof("dynamic-pricing started with environment: %s and listening in port: %v\n", env, config.Server_port)
 
 	// Register to Eureka and then set up to only heartbeat one of them
-	filename = os.Args[1] + "/eureka_" + os.Args[2] + ".gcfg"
+	filename = conf_path + "/eureka_" + env + ".gcfg"
 	registerToEureka( filename )
 
 	// Create the router to handle requests
@@ -65,17 +65,29 @@ func main() {
 
 // Check the arguments to launch the application
 // and provide specifications if needed.
-func  checkParams(  args []string ) {
+func  checkParams(  args []string ) (string, string) {
 
-	if len(args) < 2 {
+	path := os.Getenv("CONF_PATH")
+	env := os.Getenv("ENV")
 
-		fmt.Println("ERROR: invalid arguments number!")
-		fmt.Println("Usage:")
-		fmt.Println("./dynamic-pricing [path-to-config-files] [environment] [log-level]")
-		os.Exit(0)
+	if path == "" || env == "" {
+
+		if len(args) < 2 {
+
+			fmt.Println("ERROR: invalid arguments")
+			fmt.Println("Usage:")
+			fmt.Println("./dynamic-pricing [path-to-config-files] [environment] or set CONF_PATH set ENV")
+			os.Exit(0)
+
+		} else {
+			path = args[1]
+			env = args[2]
+		}
 	}
 
+	return path, env
 }
+
 
 
 // Register and keep the eureka connection

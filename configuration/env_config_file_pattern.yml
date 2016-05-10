@@ -27,4 +27,5 @@ couchbase_url:
 couchbase_oauth_bucket:
 couchbase_restrictions_bucket:
 couchbase_pool:
-
+authorized_usernames_list:
+restricted_usernames_list:

@@ -4,10 +4,19 @@ Find specifications at:
 + [github](https://github.com/joliva-ob/onebox-dynamic-pricing-api)
 + [onebox-developer](http://developer.oneboxtickets.com/dynamic-pricing-api)
 
-Compiled with runtime with: 
+Compiled with runtime: 
 + GOOS=windows GOARCH=386 go build -o dynamic-pricing.exe dynamic-pricing.go
 + GOOS=linux GOARCH=386 go build -o dynamic-pricing.linux dynamic-pricing.go
 + GOOS=darwin GOARCH=386 go build -o dynamic-pricing dynamic-pricing.go
+
+Set environment vars
++ CONF_PATH
+ - /path/to/configuration/file
++ ENV
+ - dev
+ - qa
+ - pre
+ - pro
 
 Build Docker image with
 + cp /source_cfg_files/*env* .
@@ -16,14 +25,14 @@ Build Docker image with
 
 
 
-## TODO list
-+ apply restrictions from couchbase document
-+ tests & documentation
-+ dockerize
-
-
-+ Monitorize API
+## TODO mandatory list
 + Get environment and general configurations from environment vars
++ tests & documentation
+
+## TODO should list
++ dockerize
++ apply restrictions from couchbase document + golang templates
++ Monitorize API
 + Versioning policy
 + Handle requests by gorutines pool and control them by channels
 + unit testing
@@ -31,9 +40,6 @@ Build Docker image with
 + Perfomance: Handle requests by gorutines pool and control them by channels (Marcio.io)
 + handle panic errors and recover it
 + dockerize app
-
-
-## Optional TODO list
 + extend /info and /health with discovery service status, resources statuses, and version from file + git branch
 + coger informacion de DAL-mysql o de elasticsearch o MS de prices, TTL 1 min.
 + version history
@@ -81,3 +87,4 @@ Build Docker image with
 + filter forced events list per oauth client restrictions
 + filter forced prices list per oauth client restrictions
 + force reload restrictions from endpoint
++ only allow a list of users from config

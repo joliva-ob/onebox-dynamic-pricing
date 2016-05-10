@@ -30,8 +30,8 @@ func ReloadRestrictionsController(w http.ResponseWriter, request *http.Request) 
 	start := time.Now()
 
 	// Check authorization
-	oauthtoken := authorization.Authorize( request.Header.Get(AUTH_HEADER) )
-	if oauthtoken.Token == "" {
+	oauthtoken, isAuthorized := authorization.Authorize( request.Header.Get(AUTH_HEADER) )
+	if !isAuthorized {
 		w.WriteHeader(http.StatusUnauthorized)
 		log.Warningf("/reload-restrictions request error status 401 unauthorized %v", getIP(w, request))
 		return

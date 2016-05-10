@@ -19,7 +19,7 @@ func GetRestrictions( username string, isForced bool ) (*Restrictions, bool)  {
 	restrictionsFromCache, found := restrictionsCache.Get(username)
 	if !found || isForced {
 
-		key := "dynamic-pricing-restrictions_" + username
+/*		key := "dynamic-pricing-restrictions_" + username
 		err := cbRestrictionsBucket.Get(key, &restrictions)
 		if err != nil {
 			log.Errorf("Failed to get data from the couchbase cluster for user %v %s\n", username, err)
@@ -28,6 +28,16 @@ func GetRestrictions( username string, isForced bool ) (*Restrictions, bool)  {
 			log.Infof("Load restrictions from the couchbase cluster for user %v\n", username)
 			found = true
 		}
+*/
+		// Check restricted users from config file
+		for _, restricted_user := range config.Restricted_usernames_list {
+
+			if username == restricted_user {
+				found = true
+				break
+			}
+		}
+
 
 		// Store the prices struct to cache, no expires
 		restrictionsCache.Set(username, restrictions, -1)
