@@ -80,7 +80,7 @@ func Initialize( c configuration.Config ){
 		cbOauthBucket, err = pool.GetBucket(config.Couchbase_oauth_bucket)
 		cbRestrictionsBucket, err = pool.GetBucket(config.Couchbase_restrictions_bucket)
 		if err != nil {
-			log.Fatalf("Failed to get bucket from couchbase (%s)\n", err)
+			log.Errorf("Failed to get bucket from couchbase (%s)\n", err)
 		} else {
 			log.Infof("Couchbase connected to host: %v and bucket: %v", config.Couchbase_url, config.Couchbase_oauth_bucket)
 			log.Infof("Couchbase connected to host: %v and bucket: %v", config.Couchbase_url, config.Couchbase_restrictions_bucket)

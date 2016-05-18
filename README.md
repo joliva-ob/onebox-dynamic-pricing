@@ -20,8 +20,8 @@ Set environment vars
 
 Build Docker image with
 + cp /source_cfg_files/*env* .
-+ docker build -f docker/Dockerfile . -tag dynamic-pricing
-+ docker run --publish 8000:8000 --name dynamic-pricing --rm dynamic-pricing --restart=always dynamic-pricing
++ docker build --file=docker/Dockerfile -t onebox-dynamic-pricing .
++ docker run --publish 8000:8000 --name onebox-dynamic-pricing --rm onebox-dynamic-pricing bin/dynamic-pricing
 
 
 ## TODO must list
