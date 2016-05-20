@@ -17,7 +17,4 @@ ADD *.gcfg /dynamic-pricing/cfg/
 ENV CONF_PATH /dynamic-pricing/cfg
 ENV ENV pro
 
-WORKDIR /dynamic-pricing
-ENTRYPOINT /dynamic-pricing/bin/dynamic-pricing.linux
-
 EXPOSE 8000

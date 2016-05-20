@@ -26,10 +26,9 @@ Build Docker image with
 
 ## TODO must list
 + unit tests
-
++ audit and monitorize API
 
 ## TODO should list
-+ dockerize
 + apply restrictions from couchbase document + golang templates
 + Monitorize API
 + Versioning policy
@@ -38,7 +37,6 @@ Build Docker image with
 + add endpoint /summaries
 + Perfomance: Handle requests by gorutines pool and control them by channels (Marcio.io)
 + handle panic errors and recover it
-+ dockerize app
 + extend /info and /health with discovery service status, resources statuses, and version from file + git branch
 + coger informacion de DAL-mysql o de elasticsearch o MS de prices, TTL 1 min.
 + version history
@@ -89,3 +87,4 @@ Build Docker image with
 + only allow a list of users from config
 + Get environment and general configurations from environment vars
 + documentation README.md
++ dockerization

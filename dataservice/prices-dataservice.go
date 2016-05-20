@@ -48,12 +48,12 @@ func GetPrices(date_from string, date_to string, page int, config configuration.
 	var err error
 
 	// Get the string associated with the key from the cache
-	_, restrictions := GetRestrictions( oauthtoken.UserName, false )
+	_, hasRestrictions := GetRestrictions( oauthtoken.UserName, false )
 	pricesFromCache, found := pricesCache.Get(key)
 	if !found {
 
 		// Retrieve from DB
-		rows, err = GetDataFromDb( eventId, priceId, config.Mysql_limit_items, offset, date_from, date_to, restrictions )
+		rows, err = GetDataFromDb( eventId, priceId, config.Mysql_limit_items, offset, date_from, date_to, hasRestrictions)
 		if err != nil {
 			log.Error(err)
 		}
