@@ -4,7 +4,6 @@
     <list default="true" id="1138de0b-8e27-47d6-9447-32a7feb228e0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/GOPATH__onebox_dynamic_pricing_.xml" afterPath="$PROJECT_DIR$/.idea/libraries/GOPATH__onebox_dynamic_pricing_.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/controller.go" afterPath="$PROJECT_DIR$/controller/controller.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/prices-controller.go" afterPath="$PROJECT_DIR$/controller/prices-controller.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/sales-controller.go" afterPath="$PROJECT_DIR$/controller/sales-controller.go" />
@@ -41,11 +40,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="prices-dataservice.go" pinned="false" current-in-tab="false">
+      <file leaf-file-name="prices-dataservice.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dataservice/prices-dataservice.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="127" column="17" selection-start-line="127" selection-start-column="17" selection-end-line="127" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.29198682">
+              <caret line="103" column="21" selection-start-line="103" selection-start-column="21" selection-end-line="103" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -71,11 +70,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8979592">
-              <caret line="93" column="2" selection-start-line="93" selection-start-column="2" selection-end-line="93" selection-end-column="36" />
+            <state vertical-scroll-proportion="-22.137932">
+              <caret line="83" column="38" selection-start-line="83" selection-start-column="38" selection-end-line="83" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -176,8 +175,8 @@
         <option value="$PROJECT_DIR$/controller/sales-controller.go" />
         <option value="$PROJECT_DIR$/controller/prices-controller.go" />
         <option value="$PROJECT_DIR$/dataservice/sales-dataservice.go" />
-        <option value="$PROJECT_DIR$/dataservice/prices-dataservice.go" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/dataservice/prices-dataservice.go" />
       </list>
     </option>
   </component>
@@ -999,12 +998,12 @@
       <workItem from="1464772787762" duration="1483000" />
       <workItem from="1471443602210" duration="13361000" />
       <workItem from="1471984165255" duration="76000" />
-      <workItem from="1472022836075" duration="131000" />
+      <workItem from="1472022836075" duration="426000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="270351000" />
+    <option name="totallyTimeSpent" value="270646000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1429,14 +1428,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dataservice/prices-dataservice.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="127" column="17" selection-start-line="127" selection-start-column="17" selection-end-line="127" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/go/src/database/sql/sql.go">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1461,6 +1452,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-22.137932">
+          <caret line="83" column="38" selection-start-line="83" selection-start-column="38" selection-end-line="83" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dataservice/sales-dataservice.go">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1469,15 +1471,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/dataservice/prices-dataservice.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8979592">
-          <caret line="93" column="2" selection-start-line="93" selection-start-column="2" selection-end-line="93" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.29198682">
+          <caret line="103" column="21" selection-start-line="103" selection-start-column="21" selection-end-line="103" selection-end-column="21" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
       </provider>
     </entry>
   </component>

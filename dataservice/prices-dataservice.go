@@ -136,7 +136,6 @@ func GetDataFromDb( eventId int, priceId int, limit_items int, offset int, date_
 		}
 
 	}
-	log.Debugf("rows: %v", rows)
-	log.Debugf("rows.next: %v", rows.Next())
+
 	return rows, err
 }
