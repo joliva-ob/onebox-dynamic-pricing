@@ -39,13 +39,14 @@ type PriceType struct{
  *
  * http://go-database-sql.org/accessing.html
  */
-func GetPrices(date_from string, date_to string, page int, config configuration.Config, priceId int, eventId int, uuid string, oauthtoken *Oauthtoken) []*PriceType {
+func GetPrices(date_from string, date_to string, page int, config configuration.Config, priceId int, eventId int, uuid string, oauthtoken *Oauthtoken, pageSize int) []*PriceType {
 
 	var prices []*PriceType
-	offset := config.Mysql_limit_items * page
-	key := date_from + date_to + strconv.Itoa(config.Mysql_limit_items) + strconv.Itoa(offset) + strconv.Itoa(priceId) + strconv.Itoa(eventId) + oauthtoken.UserName
+	offset := pageSize * page
+	key := date_from + date_to + strconv.Itoa(pageSize) + strconv.Itoa(offset) + strconv.Itoa(priceId) + strconv.Itoa(eventId) + oauthtoken.UserName
 	var rows *sql.Rows
 	var err error
+
 
 	// Get the string associated with the key from the cache
 	_, hasRestrictions := GetRestrictions( oauthtoken.UserName, false )
@@ -53,14 +54,14 @@ func GetPrices(date_from string, date_to string, page int, config configuration.
 	if !found {
 
 		// Retrieve from DB
-		rows, err = GetDataFromDb( eventId, priceId, config.Mysql_limit_items, offset, date_from, date_to, hasRestrictions)
+		rows, err = GetDataFromDb( eventId, priceId, pageSize, offset, date_from, date_to, hasRestrictions)
 		if err != nil {
 			log.Error(err)
 		}
 		defer rows.Close()
 
-
 		// Read all values from resultset and map it to vector of Pricetype struct
+		log.Debugf("rows.Next() is: %v", rows.Next())
 		for rows.Next() {
 
 			p := new(PriceType)
@@ -69,6 +70,7 @@ func GetPrices(date_from string, date_to string, page int, config configuration.
 				log.Error(err)
 			}
 			prices = append(prices, p)
+
 		}
 		err = rows.Err()
 		if err != nil {
@@ -104,36 +106,37 @@ func GetDataFromDb( eventId int, priceId int, limit_items int, offset int, date_
 	if priceId > 0 && eventId > 0 {
 
 		if restrictions {
-			rows, err = db.Query(config.Prices_sql_filter_event_id_price_id_restricted, priceId, config.Mysql_limit_items, offset);
+			rows, err = db.Query(config.Prices_sql_filter_event_id_price_id_restricted, priceId, limit_items, offset);
 		} else {
-			rows, err = db.Query(config.Prices_sql_filter_event_id_price_id, eventId, priceId, config.Mysql_limit_items, offset);
+			rows, err = db.Query(config.Prices_sql_filter_event_id_price_id, eventId, priceId, limit_items, offset);
 		}
 
 	} else if priceId > 0 {
 
 		if restrictions {
-			rows, err = db.Query(config.Prices_sql_filter_price_id_restricted, priceId, config.Mysql_limit_items, offset);
+			rows, err = db.Query(config.Prices_sql_filter_price_id_restricted, priceId, limit_items, offset);
 		} else {
-			rows, err = db.Query(config.Prices_sql_filter_price_id, priceId, config.Mysql_limit_items, offset);
+			rows, err = db.Query(config.Prices_sql_filter_price_id, priceId, limit_items, offset);
 		}
 
 	} else if eventId > 0 {
 
 		if restrictions {
-			rows, err = db.Query(config.Prices_sql_filter_event_id_restricted, config.Mysql_limit_items, offset);
+			rows, err = db.Query(config.Prices_sql_filter_event_id_restricted, limit_items, offset);
 		} else {
-			rows, err = db.Query(config.Prices_sql_filter_event_id, eventId, config.Mysql_limit_items, offset);
+			rows, err = db.Query(config.Prices_sql_filter_event_id, eventId, limit_items, offset);
 		}
 
 	} else { // Filter by dates
 
 		if restrictions {
-			rows, err = db.Query(config.Prices_sql_dates_restricted, date_from, date_to, config.Mysql_limit_items, offset);
+			rows, err = db.Query(config.Prices_sql_dates_restricted, date_from, date_to, limit_items, offset);
 		} else {
-			rows, err = db.Query(config.Prices_sql, date_from, date_to, config.Mysql_limit_items, offset);
+			rows, err = db.Query(config.Prices_sql, date_from, date_to, limit_items, offset);
 		}
 
 	}
-
+	log.Debugf("rows: %v", rows)
+	log.Debugf("rows.next: %v", rows.Next())
 	return rows, err
 }

@@ -67,16 +67,15 @@ type TicketDataElkType struct {
  *
  * http://go-database-sql.org/accessing.html
  */
-func GetSales(dateFrom string, dateTo string, eventId int, saleId string, page int, uuid string, oauthtoken *Oauthtoken) []*OrderDocElkType {
+func GetSales(dateFrom string, dateTo string, eventId int, saleId string, page int, uuid string, oauthtoken *Oauthtoken, pageSize int) []*OrderDocElkType {
 
 	var sales []*OrderDocElkType
 	args := make(map[string]interface{})
-	args["size"] = config.Elasticsearch_limit_items
-	from := page*config.Elasticsearch_limit_items
+	args["size"] = pageSize
+	from := page*pageSize
 	args["from"] = from
-	offset := config.Mysql_limit_items * page
 	saleId = strings.ToLower(saleId)
-	key := dateFrom + dateTo + strconv.Itoa(config.Elasticsearch_limit_items) + strconv.Itoa(offset) + strconv.Itoa(eventId) + saleId + oauthtoken.UserName
+	key := dateFrom + dateTo + strconv.Itoa(pageSize) + strconv.Itoa(from) + strconv.Itoa(eventId) + saleId + oauthtoken.UserName
 
 	// Get the string associated with the key from the cache
 	salesFromCache, found := salesCache.Get(key)
@@ -151,6 +150,7 @@ func GetQuery(dateFrom string, dateTo string, eventId int, saleId string, userna
 		}
 		query = strings.Replace(query,START_DATE,dateFrom,1)
 		query = strings.Replace(query,END_DATE,dateTo,1)
+		log.Debugf("Query ELK: %v", query)
 	}
 
 	return query

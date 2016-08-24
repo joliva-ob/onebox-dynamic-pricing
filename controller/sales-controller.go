@@ -97,11 +97,17 @@ func SalesController(w http.ResponseWriter, request *http.Request) {
 	if err != nil {
 		page = 0
 	}
+	pageSize, err := strconv.Atoi(request.URL.Query().Get(PAGE_SIZE))
+	if err != nil {
+		pageSize = configuration.GetConfig().Elasticsearch_limit_items
+	}
+	if pageSize > 250 { // Security upper page size limit
+		pageSize = 250
+	}
 	eventId, err = strconv.Atoi(request.URL.Query().Get(EVENT_ID)) // Return 0 if error
 
-
 	// Retrieve requested resource information
-	dbSales := dataservice.GetSales(startDate, endDate, eventId, saleId, page, uuid, oauthtoken)
+	dbSales := dataservice.GetSales(startDate, endDate, eventId, saleId, page, uuid, oauthtoken, pageSize)
 
 
 	// Set json response struct

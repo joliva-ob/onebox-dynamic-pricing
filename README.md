@@ -27,6 +27,7 @@ Build Docker image with
 ## TODO must list
 + unit tests
 + audit and monitorize API
++ high performance refactoring (marcio.io)
 
 ## TODO should list
 + apply restrictions from couchbase document + golang templates
@@ -88,3 +89,6 @@ Build Docker image with
 + Get environment and general configurations from environment vars
 + documentation README.md
 + dockerization
+
+# v1.0.1
++ page_size parameter added to sales

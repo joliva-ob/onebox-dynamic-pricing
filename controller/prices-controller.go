@@ -70,11 +70,18 @@ func PricesController(w http.ResponseWriter, request *http.Request) {
 	if err != nil {
 		page = 0
 	}
+	pageSize, err := strconv.Atoi(request.URL.Query().Get(PAGE_SIZE))
+	if err != nil {
+		pageSize = configuration.GetConfig().Mysql_limit_items
+	}
+	if pageSize > 250 { // Security upper page size limit
+		pageSize = 250
+	}
 	eventId, err = strconv.Atoi(request.URL.Query().Get(EVENT_ID)) // Return 0 if error
 
 
 	// Retrieve requested resource information
-	prices := dataservice.GetPrices(startDate, endDate, page, configuration.GetConfig(), priceId, eventId, uuid, oauthtoken)
+	prices := dataservice.GetPrices(startDate, endDate, page, configuration.GetConfig(), priceId, eventId, uuid, oauthtoken, pageSize)
 
 
 	// Set json response struct
