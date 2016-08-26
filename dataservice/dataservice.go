@@ -56,10 +56,10 @@ func Initialize( c configuration.Config ){
 	if !isInitialized {
 
 		var err error
+
 		// Open database connection pool
 		db, err = sql.Open(MYSQL_DRIVER_NAME, config.Mysql_conn)
 		db.SetMaxOpenConns(config.Mysql_max_conn)
-		db, err = sql.Open(MYSQL_DRIVER_NAME, config.Mysql_conn)
 		if err != nil {
 			log.Fatalf("Failed to connect to mysql database: %v\n", err)
 		}

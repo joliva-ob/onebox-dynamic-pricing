@@ -44,26 +44,25 @@ func GetPrices(date_from string, date_to string, page int, config configuration.
 	var prices []*PriceType
 	offset := pageSize * page
 	key := date_from + date_to + strconv.Itoa(pageSize) + strconv.Itoa(offset) + strconv.Itoa(priceId) + strconv.Itoa(eventId) + oauthtoken.UserName
-	var rows *sql.Rows
-	var err error
 
 
 	// Get the string associated with the key from the cache
 	_, hasRestrictions := GetRestrictions( oauthtoken.UserName, false )
 	pricesFromCache, found := pricesCache.Get(key)
 	if !found {
-
+//		log.Debugf("--> Not found in cache")
 		// Retrieve from DB
-		rows, err = GetDataFromDb( eventId, priceId, pageSize, offset, date_from, date_to, hasRestrictions)
+		rows, err := GetDataFromDb( eventId, priceId, pageSize, offset, date_from, date_to, hasRestrictions)
 		if err != nil {
 			log.Error(err)
 		}
 		defer rows.Close()
+//		log.Debugf("rows: %v", rows)
 
-		// Read all values from resultset and map it to vector of Pricetype struct
-		log.Debugf("rows.Next() is: %v", rows.Next())
+		// Read all values from resultset and map it into vector of Pricetype struct
 		for rows.Next() {
 
+//			log.Debugf("rows.Next(): true")
 			p := new(PriceType)
 			err := rows.Scan(&p.Id, &p.Price, &p.Price_zone_name, &p.Event_id, &p.Event_name, &p.Event_date, &p.Session_id, &p.Session_date, &p.Venue_id, &p.Venue_name, &p.Buyer_type_code, &p.Fee, &p.Tax, &p.External_price_id)
 			if err != nil {
@@ -81,7 +80,7 @@ func GetPrices(date_from string, date_to string, page int, config configuration.
 		pricesCache.Set(key, prices, 0)
 
 	} else {
-
+//		log.Debugf("--> Retrieving from CACHE")
 		// Retrieve prices struct from cache
 		prices = pricesFromCache.([]*PriceType) // Cast interface{} retrieved from cache to []*PriceType
 	}
@@ -99,43 +98,48 @@ func GetPrices(date_from string, date_to string, page int, config configuration.
  or not.
  */
 func GetDataFromDb( eventId int, priceId int, limit_items int, offset int, date_from string, date_to string, restrictions bool) (*sql.Rows, error) {
-
-	var rows *sql.Rows
-	var err error
-
+//	log.Debugf("--> into GetDataFromDb")
+//	log.Debugf("--> GetDataFromDb parameters:\n eventId %v\n priceId %v\n limit_items %v\n offset %v\n date_from %v\n date_to %v\n restrictions %v", eventId, priceId, limit_items, offset, date_from, date_to, restrictions)
 	if priceId > 0 && eventId > 0 {
 
 		if restrictions {
-			rows, err = db.Query(config.Prices_sql_filter_event_id_price_id_restricted, priceId, limit_items, offset);
+//			log.Debugf("1")
+			return db.Query(config.Prices_sql_filter_event_id_price_id_restricted, priceId, limit_items, offset);
 		} else {
-			rows, err = db.Query(config.Prices_sql_filter_event_id_price_id, eventId, priceId, limit_items, offset);
+//			log.Debugf("2")
+			return db.Query(config.Prices_sql_filter_event_id_price_id, eventId, priceId, limit_items, offset);
 		}
 
 	} else if priceId > 0 {
 
 		if restrictions {
-			rows, err = db.Query(config.Prices_sql_filter_price_id_restricted, priceId, limit_items, offset);
+//			log.Debugf("3")
+			return db.Query(config.Prices_sql_filter_price_id_restricted, priceId, limit_items, offset);
 		} else {
-			rows, err = db.Query(config.Prices_sql_filter_price_id, priceId, limit_items, offset);
+//			log.Debugf("4")
+			return db.Query(config.Prices_sql_filter_price_id, priceId, limit_items, offset);
 		}
 
 	} else if eventId > 0 {
 
 		if restrictions {
-			rows, err = db.Query(config.Prices_sql_filter_event_id_restricted, limit_items, offset);
+//			log.Debugf("5")
+			return db.Query(config.Prices_sql_filter_event_id_restricted, limit_items, offset);
 		} else {
-			rows, err = db.Query(config.Prices_sql_filter_event_id, eventId, limit_items, offset);
+//			log.Debugf("6")
+			return db.Query(config.Prices_sql_filter_event_id, eventId, limit_items, offset);
 		}
 
 	} else { // Filter by dates
 
 		if restrictions {
-			rows, err = db.Query(config.Prices_sql_dates_restricted, date_from, date_to, limit_items, offset);
+//			log.Debugf("7")
+			return db.Query(config.Prices_sql_dates_restricted, date_from, date_to, limit_items, offset);
 		} else {
-			rows, err = db.Query(config.Prices_sql, date_from, date_to, limit_items, offset);
+//			log.Debugf("8")
+			return db.Query(config.Prices_sql, date_from, date_to, limit_items, offset);
 		}
-
 	}
 
-	return rows, err
 }
+

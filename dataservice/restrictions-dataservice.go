@@ -16,8 +16,8 @@ func GetRestrictions( username string, isForced bool ) (*Restrictions, bool)  {
 	var restrictions *Restrictions
 
 	// Get the string associated with the key from the cache
-	restrictionsFromCache, found := restrictionsCache.Get(username)
-	if !found || isForced {
+	restrictionsFromCache, hasRestrictions := restrictionsCache.Get(username)
+	if !hasRestrictions || isForced {
 
 /*		key := "dynamic-pricing-restrictions_" + username
 		err := cbRestrictionsBucket.Get(key, &restrictions)
@@ -33,22 +33,22 @@ func GetRestrictions( username string, isForced bool ) (*Restrictions, bool)  {
 		for _, restricted_user := range config.Restricted_usernames_list {
 
 			if username == restricted_user {
-				found = true
+				hasRestrictions = true
 				break
 			}
 		}
 
 
-		// Store the prices struct to cache, no expires
+		// Store the struct to cache, no expires
 		restrictionsCache.Set(username, restrictions, -1)
 
 	} else {
 
-		// Retrieve prices struct from cache
-		restrictions = restrictionsFromCache.(*Restrictions) // Cast interface{} retrieved from cache to []*PriceType
+		// Retrieve  struct from cache
+		restrictions = restrictionsFromCache.(*Restrictions) // Cast interface{} retrieved from cache to []*Type
 	}
 
-	return restrictions, found
+	return restrictions, hasRestrictions
 }
 
 

@@ -32,6 +32,7 @@
       <root url="file://$PROJECT_DIR$/../../../code.google.com/p/go.tools/cmd/callgraph/testdata" />
       <root url="file://$PROJECT_DIR$/../../../golang.org/x/tools/go/gcimporter/testdata" />
       <root url="file://$PROJECT_DIR$/../../../code.google.com/p/go.tools/cmd/vet/testdata" />
+      <root url="file://$PROJECT_DIR$/../mysql-go-test/.idea" />
       <root url="file://$PROJECT_DIR$/../../../golang.org/x/tools/go/types/testdata" />
       <root url="file://$PROJECT_DIR$/../../../code.google.com/p/go.tools/go/ssa/interp/testdata" />
       <root url="file://$PROJECT_DIR$/../../clbanning/x2j/.git" />

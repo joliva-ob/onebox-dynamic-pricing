@@ -22,14 +22,14 @@ func GetOauthtoken( token string ) *Oauthtoken  {
 			log.Errorf("Failed to get data from the couchbase cluster (%s)\n", err)
 		}
 
-		// Store the prices struct to cache
+		// Store the struct to cache
 		oauthCache.Set(token, oauthtoken, 0)
 
 	} else {
 
-		// Retrieve prices struct from cache
+		// Retrieve struct from cache
 //		log.Debugf("oauthtoken found %v", token)
-		oauthtoken = oauthtokenFromCache.(*Oauthtoken) // Cast interface{} retrieved from cache to []*PriceType
+		oauthtoken = oauthtokenFromCache.(*Oauthtoken) // Cast interface{} retrieved from cache
 	}
 
 	return oauthtoken
