@@ -44,8 +44,8 @@ func main() {
 
 	// Register to Eureka and then set up to only heartbeat one of them
 	filename = conf_path + "/eureka_" + env + ".gcfg"
-	ec, i := registerToEureka( filename )
-	go sendHeartBeatToEureka( ec, i )
+//	ec, i := registerToEureka( filename )
+//	go sendHeartBeatToEureka( ec, i )
 
 	// Create the router to handle requests
 	router := mux.NewRouter().StrictSlash(true)

@@ -49,11 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dynamic-pricing.go" pinned="false" current-in-tab="false">
+      <file leaf-file-name="dynamic-pricing.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dynamic-pricing.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="120" column="0" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.7068063">
+              <caret line="45" column="57" selection-start-line="45" selection-start-column="57" selection-end-line="45" selection-end-column="57" />
               <folding>
                 <element signature="e#14#318#0" expanded="true" />
               </folding>
@@ -83,13 +83,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider editor-type-id="MarkdownPreviewEditor">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6175637">
+            <state vertical-scroll-proportion="-7.5172415">
               <caret line="90" column="15" selection-start-line="90" selection-start-column="15" selection-end-line="90" selection-end-column="15" />
               <folding />
             </state>
@@ -199,8 +199,8 @@
         <option value="$PROJECT_DIR$/dataservice/oauth-dataservice.go" />
         <option value="$PROJECT_DIR$/dataservice/restrictions-dataservice.go" />
         <option value="$PROJECT_DIR$/dataservice/prices-dataservice.go" />
-        <option value="$PROJECT_DIR$/dynamic-pricing.go" />
         <option value="$PROJECT_DIR$/controller/info-controller.go" />
+        <option value="$PROJECT_DIR$/dynamic-pricing.go" />
       </list>
     </option>
   </component>
@@ -1013,12 +1013,12 @@
       <workItem from="1472804989454" duration="1769000" />
       <workItem from="1473083714687" duration="1174000" />
       <workItem from="1474409787462" duration="566000" />
-      <workItem from="1475073756279" duration="443000" />
+      <workItem from="1475073756279" duration="787000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="294483000" />
+    <option name="totallyTimeSpent" value="294827000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1454,16 +1454,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dynamic-pricing.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="120" column="0" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
-          <folding>
-            <element signature="e#14#318#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/configuration/configuration.go">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1511,9 +1501,19 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6175637">
+        <state vertical-scroll-proportion="-7.5172415">
           <caret line="90" column="15" selection-start-line="90" selection-start-column="15" selection-end-line="90" selection-end-column="15" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dynamic-pricing.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7068063">
+          <caret line="45" column="57" selection-start-line="45" selection-start-column="57" selection-end-line="45" selection-end-column="57" />
+          <folding>
+            <element signature="e#14#318#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
