@@ -14,6 +14,7 @@ import (
 	"github.com/joliva-ob/onebox-dynamic-pricing/dataservice"
 	"github.com/joliva-ob/onebox-dynamic-pricing/configuration"
 	"github.com/joliva-ob/onebox-dynamic-pricing/controller"
+	"time"
 )
 
 
@@ -43,7 +44,8 @@ func main() {
 
 	// Register to Eureka and then set up to only heartbeat one of them
 	filename = conf_path + "/eureka_" + env + ".gcfg"
-	registerToEureka( filename )
+	ec, i := registerToEureka( filename )
+	go sendHeartBeatToEureka( ec, i )
 
 	// Create the router to handle requests
 	router := mux.NewRouter().StrictSlash(true)
@@ -91,7 +93,7 @@ func  checkParams(  args []string ) (string, string) {
 
 
 // Register and keep the eureka connection
-func registerToEureka( configFile string )  {
+func registerToEureka( configFile string ) (fargo.EurekaConnection, fargo.Instance) {
 
 	eurekaConn, _ = fargo.NewConnFromConfigFile(configFile)
 	hostname, _ := os.Hostname()
@@ -111,5 +113,22 @@ func registerToEureka( configFile string )  {
 	err := eurekaConn.RegisterInstance(&i)
 	if err != nil {
 		log.Error("%v", err)
+	}
+
+	return eurekaConn, i
+}
+
+
+// Go routine to keep registered into
+// Eureka service discovery
+func sendHeartBeatToEureka( ec fargo.EurekaConnection, i fargo.Instance ) {
+
+	ticker := time.Tick(time.Duration(30 * 1000) * time.Millisecond)
+
+	for {
+		select {
+		case <- ticker:
+			ec.HeartBeatInstance(&i)
+		}
 	}
 }

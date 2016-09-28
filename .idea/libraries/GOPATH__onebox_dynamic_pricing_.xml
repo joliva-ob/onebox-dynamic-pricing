@@ -47,6 +47,7 @@
       <root url="file://$PROJECT_DIR$/../../../bitbucket.org/joliva-ob/onebox-business-alerts/.idea" />
       <root url="file://$PROJECT_DIR$/../../../code.google.com/p/go.tools/go/types/testdata" />
       <root url="file://$PROJECT_DIR$/../../bradfitz/gomemcache/.git" />
+      <root url="file://$PROJECT_DIR$/../../ArthurHlt/gominlog/.git" />
       <root url="file://$PROJECT_DIR$/../../onsi/gomega/.git" />
       <root url="file://$PROJECT_DIR$/../jacaranda/.idea" />
       <root url="file://$PROJECT_DIR$/../rabbit-go-test/.idea" />
@@ -54,18 +55,22 @@
       <root url="file://$PROJECT_DIR$/../alertigo/.git" />
       <root url="file://$PROJECT_DIR$/../alertigo/.idea" />
       <root url="file://$PROJECT_DIR$/../../../golang.org/x/tools/refactor/eg/testdata" />
+      <root url="file://$PROJECT_DIR$/../../ArthurHlt/gominlog/Godeps/_workspace" />
       <root url="file://$PROJECT_DIR$/../../../bitbucket.org/joliva-ob/onebox-business-alerts/.git" />
       <root url="file://$PROJECT_DIR$/../couchdb-go-test/.idea" />
       <root url="file://$PROJECT_DIR$/../../peterhellberg/hiro/.git" />
+      <root url="file://$PROJECT_DIR$/../../ArthurHlt/go-eureka-client/.git" />
       <root url="file://$PROJECT_DIR$/../../../golang.org/x/tools/cmd/cover/testdata" />
       <root url="file://$PROJECT_DIR$/../../../golang.org/x/tools/.git" />
       <root url="file://$PROJECT_DIR$/../../satori/go.uuid/.git" />
       <root url="file://$PROJECT_DIR$/../../stretchr/testify/_codegen" />
       <root url="file://$PROJECT_DIR$/../../go-fsnotify/fsnotify/.git" />
       <root url="file://$PROJECT_DIR$/../../apimatic/unirest-go/.git" />
+      <root url="file://$PROJECT_DIR$/../../daviddengcn/go-colortext/.git" />
       <root url="file://$PROJECT_DIR$/../../../code.google.com/p/go.tools/refactor/eg/testdata" />
       <root url="file://$PROJECT_DIR$/../../stretchr/testify/.git" />
       <root url="file://$PROJECT_DIR$/../../onsi/gomega/gexec/_fixture" />
+      <root url="file://$PROJECT_DIR$/../eureka-go-test/.idea" />
       <root url="file://$PROJECT_DIR$/../../bitly/go-hostpool/.git" />
       <root url="file://$PROJECT_DIR$/../../../golang.org/x/tools/go/loader/testdata" />
       <root url="file://$PROJECT_DIR$" />
@@ -85,6 +90,7 @@
       <root url="file://$PROJECT_DIR$/../couchdb-go-test/.git" />
       <root url="file://$PROJECT_DIR$/../../../golang.org/x/tools/go/ssa/ssautil/testdata" />
       <root url="file://$PROJECT_DIR$/../../couchbaselabs/go-couchbase/.git" />
+      <root url="file://$PROJECT_DIR$/../../oneboxtm/onebox-go-message-processor/.idea" />
       <root url="file://$PROJECT_DIR$/../elastic-go-test/.git" />
       <root url="file://$PROJECT_DIR$/../../../golang.org/x/tools/cmd/bundle/testdata" />
       <root url="file://$PROJECT_DIR$/../../op/go-logging/.git" />
@@ -103,6 +109,7 @@
       <root url="file://$PROJECT_DIR$/../../../golang.org/x/tools/cmd/stringer/testdata" />
       <root url="file://$PROJECT_DIR$/../../tucnak/telebot/.git" />
       <root url="file://$PROJECT_DIR$/../../../code.google.com/p/go.tools/go/gccgoimporter/testdata" />
+      <root url="file://$PROJECT_DIR$/../../oneboxtm/onebox-go-message-processor/.git" />
       <root url="file://$PROJECT_DIR$/../../../gopkg.in/couchbase/gocb.v1/.git" />
       <root url="file://$PROJECT_DIR$/../../../code.google.com/p/go.net/.hg" />
       <root url="file://$PROJECT_DIR$/../../../golang.org/x/tools/cmd/callgraph/testdata" />
